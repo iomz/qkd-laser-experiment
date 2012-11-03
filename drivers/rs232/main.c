@@ -4,7 +4,7 @@ RS232 Test for an Atmega 168
 Atmega168 DIP TX PD1 (pin3)
 Atmega168 DIP RX PD0 (pin2)
 */
-#define F_CPU   8000000UL // 8Mhz
+#define F_CPU   8000000UL // 8MHz
 #define FOSC    F_CPU 
 #define BAUD    9600
 #define UBRR    FOSC/16/BAUD-1
