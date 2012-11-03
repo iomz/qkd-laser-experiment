@@ -10,16 +10,17 @@ def rs232(device):
         port=device,
         baudrate=9600,
         bytesize=8,
-        stopbits='N',
-        parity=1
+        parity='N',
+        stopbits=1
     )
 
 if __name__ == "__main__":
-    ser = rs232(ALICE_PORT)
-    ser.open()
+    ser = rs232(PORT)
     ser.isOpen()
-    in = ''
-    while ser.inWaiting() > 0:
-        in += ser.read(1)
+    time.sleep(0.25)
+    print ser.readline()
 
-    print in
+    ser.write('a')
+    print ser.read()
+    ser.write('b')
+    print ser.read()

@@ -1,8 +1,8 @@
 TARGET = atmega168
 PROGRAMMER = m168p
-#F_CPU=8000000
+F_CPU=8000000
 
-COMPILEC = avr-gcc -Wall -O2 -Iusbdrv -I. -mmcu=$(TARGET) # -DDEBUG_LEVEL=2
+COMPILEC = avr-gcc -Wall -O2 -Iusbdrv -I.-DF_CPU=$(F_CPU) -mmcu=$(TARGET) # -DDEBUG_LEVEL=2
 
 OBJECTS =  main.o
 
@@ -40,7 +40,7 @@ flash:
 	avrdude -c duemilanove -p $(PROGRAMMER) -P ft0 -u -U flash:w:main.hex -B 4800
 
 fuses:
-	avrdude -c duemilanove -p $(PROGRAMMER) -P ft0 -U efuse:w:0xF9:m -U hfuse:w:0xDF:m -U lfuse:w:0x62:m -B 4800
+	avrdude -c duemilanove -p $(PROGRAMMER) -P ft0 -u -U hfuse:w:0xdf:m -U lfuse:w:0xe2:m -B 4800
 
-write:
-	avrdude -c duemilanove -p $(PROGRAMMER) -P ft0 -B 4800 -U flash:w:main.hex
+read:
+	avrdude -c duemilanove -p $(PROGRAMMER) -P ft0 -B 4800 -v r
