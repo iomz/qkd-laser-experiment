@@ -3,7 +3,8 @@
 import time
 import serial
 
-PORT = "/dev/cu.PL2303-000012FD"
+# PORT = "/dev/cu.PL2303-000012FD"
+PORT = "/dev/tty.PL2303-000012FD"
 
 def rs232(device):
     return serial.Serial(
@@ -18,9 +19,13 @@ if __name__ == "__main__":
     ser = rs232(PORT)
     ser.isOpen()
     time.sleep(0.25)
-    print ser.readline()
 
-    ser.write('a')
-    print ser.read()
-    ser.write('b')
-    print ser.read()
+    while 1:
+        ser.write('1')
+        print ser.read()
+        ser.write('3')
+        print ser.read()
+        ser.write('2')
+        print ser.read()
+        ser.write('4')
+        print ser.read()
