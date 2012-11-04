@@ -1,18 +1,7 @@
-/*
-RS232 Test for an Atmega 168
-
-Atmega168 DIP TX PD1 (pin3)
-Atmega168 DIP RX PD0 (pin2)
-*/
-#define F_CPU   8000000UL // 8MHz
-#define FOSC    F_CPU
-#define BAUD    9600
-#define UBRR    FOSC/16/BAUD-1
-
+#include "rs232.h"
 #include <avr/io.h>
-#include <util/delay.h>
+#include <avr/cpufunc.h>
 #include <util/setbaud.h>
-
 
 /* Initializes the USART (RS232 interface) */
 void USART_init( unsigned int ubrr )
@@ -43,25 +32,6 @@ void tx_string_USART( char *str )
   while (*str != 0){
     tx_1byte_USART(*str);
     str++;
-    _delay_ms(250);
+    _NOP();
   }
 }
-
-int main(void)
-{
-  unsigned char c;
-  DDRB = 0xFF; // Set PORTB for output
-  USART_init(UBRR);
-
-  PORTB=0xFF;
-  _delay_ms(1000);
-  PORTB=0x00;
-  tx_string_USART("Connected!\r\n");
-
-  while(1){
-    c = rx_1byte_USART();
-    tx_1byte_USART(c);
-  }
-
-  return 0;
-} 

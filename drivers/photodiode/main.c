@@ -1,15 +1,14 @@
 /*
-RS232 Test for an Atmega 168
-
-Atmega168 DIP TX PD1 (pin3)
-Atmega168 DIP RX PD0 (pin2)
+Servo control test for an ATMega 168P
+ATMega168 DIP ADC0 (pin23,PC0)
 */
-#define F_CPU   8000000UL // 8MHz
-#define FOSC    F_CPU
+#define F_CPU  8000000UL // 8MHz
+#define FOSC    F_CPU 
 #define BAUD    9600
 #define UBRR    FOSC/16/BAUD-1
 
 #include <avr/io.h>
+#include <avr/cpufunc.h>
 #include <util/delay.h>
 #include <util/setbaud.h>
 
@@ -47,20 +46,52 @@ void tx_string_USART( char *str )
   }
 }
 
+/* Convert integer to a string */
+#include <inttypes.h>
+char* itoa(uint16_t number, uint8_t base)
+{
+  if(!number){
+    return "0\r\n";
+  }
+  
+  static char buf[16] = {0};
+  register char i = 12;
+  buf[14] = '\n';
+  buf[13] = '\r';
+  char m = 0;
+  
+  if(number < 0){
+    number = number * (-1);
+    m = 1;
+  }
+  
+  for(; number && i ; --i, number /= base)
+    buf[i] = "0123456789ABCDEF"[number % base];
+  
+  if(m){
+    buf[i] = '-';
+    return &buf[i];
+  }else{
+    return &buf[i+1];
+  }
+}
+
 int main(void)
 {
-  unsigned char c;
   DDRB = 0xFF; // Set PORTB for output
   USART_init(UBRR);
+  ADCSRA |= _BV(ADSC);
 
-  PORTB=0xFF;
   _delay_ms(1000);
-  PORTB=0x00;
   tx_string_USART("Connected!\r\n");
 
   while(1){
-    c = rx_1byte_USART();
-    tx_1byte_USART(c);
+    PORTB=0xFF;
+    while(ADCSRA & _BV(ADSC));
+    tx_string_USART(itoa(ADC, 10));
+    _delay_ms(1000);
+    PORTB=0x00;
+    _delay_ms(1000);
   }
 
   return 0;

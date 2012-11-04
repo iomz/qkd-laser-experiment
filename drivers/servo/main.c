@@ -8,20 +8,11 @@ ATMega168 DIP PDM OC1A (pin15,PB1)
 #include <avr/cpufunc.h>
 #include <util/delay.h>
 
-/*
-Pulse width can be calculated by
-pulse_width = PULSE_MIN + (ANGLE)/(ROTATION_RANGE)*PULSE_RANGE
-*/
 #define OCR1A_MIN   610
 
 /* PWM init */
 void PWM_init( void )
 {
-  /*
-  COM1A1: Set OC1A on BOTTOM and clear on Compare match
-  WGM13,12,11: Fast WPM, TOP=ICR1, TOP->BOTTOM mode
-  CS11: Clock select prescaler as 8
-  */
   TCCR1A = _BV(COM1A1) | _BV(WGM11);
   TCCR1B = _BV(WGM13) | _BV(WGM12) | _BV(CS11);
   
