@@ -9,7 +9,7 @@ import serial
 
 FILE_PATH = "http://malt.dip.jp/AQUA/ORF/output.txt"
 
-PORT = "/dev/cu.PL2303-000012FD"
+PORT = "/dev/cu.PL2303-000013FA"
 # PORT = "/dev/tty.PL2303-000012FD"
 
 def rs232(device):
