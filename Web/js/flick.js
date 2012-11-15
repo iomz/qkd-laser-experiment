@@ -1,8 +1,7 @@
 $(function() {
 	var element = $('#flickable').flickable({
 			section: 'li',
-			friction: 0
-	});
+		});
 
 	$('#select_box td a').click(
 		function() {
@@ -13,7 +12,18 @@ $(function() {
 
 	$('#send').click(
 		 function(){
-			 element.flickable('select', 1);
+			 element.flickable('select', 4);
+			 return false;
+		 });
+
+	$('#toEve').click(
+		 function(){
+			 element.flickable('select', 5);
+			 return false;
+		 });
+	$('#again').click(
+		 function(){
+			 element.flickable('select', 3);
 			 return false;
 		 });
 });

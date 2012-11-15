@@ -17,6 +17,14 @@ function setRandomBob(){
 	}
 }
 
+function setRandomEve(){
+	var randNum;
+	for(var i=0;i<length;i++){
+		randNum = Math.floor( Math.random() * 2 );
+		if(randNum == 1)	changeBase("ebase"+i);
+	}
+}
+
 function setValAlice(){
 	var val = document.getElementById("alice");
 	val.value = "";
@@ -42,12 +50,12 @@ function setValBob(){
 	}
 }
 
-function setValBob(){
-	var val = document.getElementById("bob");
+function setValEve(){
+	var val = document.getElementById("eve");
 	val.value = "";
 	for(var i=0;i<length;i++){
 		var bit;
-		if(document.getElementById("bbase"+i).value == "+") bit = "0";
+		if(document.getElementById("ebase"+i).value == "+") bit = "0";
 		else bit = "1";
 		val.value += bit;
 	}
