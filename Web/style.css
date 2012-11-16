@@ -1,0 +1,66 @@
+body{
+	text-align:center;
+}
+.wrap{
+	position:relative;
+	margin-left: 180px;
+	width:528px;
+	height:500px;
+}
+#flickable {
+	border: 0px;
+	width: 963px;
+	height: 588px;
+	overflow: hidden;
+	float: left;
+}
+#flickable ul {
+	list-style: none;
+	width:3000px;
+	margin: 0;
+	padding: 5px;
+}
+#flickable ul li {
+	margin: 0;
+	padding: 20px;
+	float: left;
+}
+#flickable .block {
+	width: 900px;
+	height: 528px;
+	padding: 10px;
+	float:left;
+}
+#flickable h4 {
+	color: #FFF;
+}
+#flickable .ui-flickable-container {
+	cursor: pointer;
+}
+
+.button{
+	width:50px;
+	height:50px;
+	font-size:200%;
+}
+
+.header{
+	text-align:left;
+}
+
+.footer{
+	height:100px;
+	text-align:right;
+}
+
+button {
+    width: auto;
+    padding:0;
+    margin:0;
+    background:none;
+    border:0;
+    font-size:0;
+    line-height:0;
+    overflow:visible;
+    cursor:pointer;
+}
