@@ -1,0 +1,10 @@
+#Compiled source
+*.o
+*.bin
+*.map
+*.hex
+#.pyc
+
+#Vim swapfile
+*.swap
+
