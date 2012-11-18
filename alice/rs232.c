@@ -37,13 +37,22 @@ void tx_string_USART( char *str )
   }
 }
 
-void toggle_PB5( void ){
-  if(!bit_is_set(DDRB, DDB5))
-    DDRB |= _BV(DDB5);
-  if(bit_is_clear(PORTB, PB5))
-    PORTB |= _BV(PB5);
+void toggle_PB0( void ){
+  if(!bit_is_set(DDRB, DDB0))
+    DDRB |= _BV(DDB4);
+  if(bit_is_clear(PORTB, PB0))
+    PORTB |= _BV(PB0);
   else
-    PORTB &= ~(_BV(PB5));
+    PORTB &= ~(_BV(PB0));
+}
+
+void toggle_PB3( void ){
+  if(!bit_is_set(DDRB, DDB3))
+    DDRB |= _BV(DDB3);
+  if(bit_is_clear(PORTB, PB3))
+    PORTB |= _BV(PB3);
+  else
+    PORTB &= ~(_BV(PB3));
 }
 
 void toggle_PB4( void ){
@@ -53,4 +62,22 @@ void toggle_PB4( void ){
     PORTB |= _BV(PB4);
   else
     PORTB &= ~(_BV(PB4));
+}
+
+void toggle_PB5( void ){
+  if(!bit_is_set(DDRB, DDB5))
+    DDRB |= _BV(DDB5);
+  if(bit_is_clear(PORTB, PB5))
+    PORTB |= _BV(PB5);
+  else
+    PORTB &= ~(_BV(PB5));
+}
+
+void toggle_PD7( void ){
+  if(!bit_is_set(DDRD, DDD7))
+    DDRD |= _BV(DDD7);
+  if(bit_is_clear(PORTD, PD7))
+    PORTD |= _BV(PD7);
+  else
+    PORTD &= ~(_BV(PD7));
 }
