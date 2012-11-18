@@ -1,75 +1,72 @@
 #include "rs232.h"
-#include "servo.h"
-
 #include <avr/io.h>
-#include <avr/interrupt.h>
 #include <util/delay.h>
 
 #define NBITS 20 
+#define OCR1_MIN   610
 
-void toggle_PB5( void ){
-  PORTB = ( bit_is_clear(PORTB, PB5) ? (1<<PB5) : (0<<PB5) ); // Toggle LED
+/* PWM init */
+void PWM_init( void ){
+  /*
+  COM1A1: Set OC1A/OC1B on BOTTOM and clear on Compare match
+  WGM13,12,11: Fast WPM, TOP=ICR1, TOP->BOTTOM mode
+  CS11: Clock select prescaler as 8
+  */
+  TCCR1A = _BV(COM1A1) | _BV(COM1B1) |  _BV(WGM11);
+  TCCR1B = _BV(WGM13) | _BV(WGM12) | _BV(CS11);
+  
+  TCNT1 = 0x0000;    // Initialize the counter register
+  ICR1  = 19999;     // Set TOP as 19999: 8MHz /(8*(1+19999)) = 50Hz 
 }
 
-// Precondition: both bit and base must be 0 or 1
-void rotate_polarizer(unsigned char base){
-  if (base == '0')
-    rotate_to(0);
-  else if (base == '1')
-    rotate_to(45);
+/* Convert degree to pulse width and rotate */
+void bob_rotate_to( unsigned char angle){
+  switch(angle){
+    case '0': OCR1A = OCR1_MIN + 1080;break; // 90 degree
+    case '1': OCR1A = OCR1_MIN + 1590;break; // 135 degree
+    default: OCR1A = OCR1_MIN + 2100;break;
+  }
+}
+
+void eve_rotate_to( unsigned char angle){
+  switch(angle){
+    case '0': OCR1B = OCR1_MIN + 1080;break; // 90 degree
+    case '1': OCR1B = OCR1_MIN + 1590;break; // 1355 degree
+    default: OCR1B = OCR1_MIN + 2100;break;
+  }
 }
 
 /* main */
 int main(void){
-  unsigned char c;
+  unsigned char c, bob_base, eve_base;
   unsigned short i;
   USART_init(UBRR);
   PWM_init();
-  DDRB  = _BV(DDB1) |_BV(DDB5);  // Enable PB1(OC1A) as output and PB5 for LED
-  PORTB = _BV(PB5); // Turn on PB5
-
-
-  /* Timer setup */
-  TCCR0A |= _BV(WGM01);  // Set the Timer Mode to CTC
-  OCR0A = 0xFF;          // Value to count to
-  TIMSK0 |= _BV(OCIE0A); // Set the ISR COMPA vect
-  sei(); // enable interrupts
-  TCCR0B |= _BV(CS02) | _BV(CS00);   // Set prescaler to 1024
-
-  /* ADC setup */
-  // AVcc ref, use ADC5
-  ADMUX = _BV(REFS0) | _BV(ADLAR) | _BV(MUX2) | _BV(MUX0);
-  // Free-running, enable ADC and interrupt, prescaler div factor 64
-  ADCSRA = _BV(ADEN) | _BV(ADATE) | _BV(ADIE) | _BV(ADPS2) | _BV(ADPS1);
+  DDRB = _BV(DDB1) | _BV(DDB2);  // Enable PB1(OC1A) and PB2(OC1B) as PWM control 
 
   for(;;){
     c = rx_1byte_USART();
-    if(c!='s')
+    if(c=='c'){
+      bob_rotate_to(2);
+      eve_rotate_to(2);
       continue;
-
-    sei(); // Enable Global Interrupts
-    for(i=0;i<NBITS;i++){
-      unsigned char bob_base = rx_1byte_USART();
-      unsigned char eve_base = rx_1byte_USART();
-      tx_1byte_USART('E');
-      rotate_polarizer(eve_base);
-      rotate_polarizer(bob_base);
-      tx_1byte_USART('S'); 
     }
-    cli(); // Disable Global Interrupts
+    else if(c!='s')
+      continue;
+    
+    toggle_PB5();
+    for(i=0;i<NBITS;i++){
+      c = rx_1byte_USART();
+      c = rx_1byte_USART();
+      toggle_PB4();
+      bob_base = rx_1byte_USART();
+      eve_base = rx_1byte_USART();
+      bob_rotate_to(bob_base);
+      eve_rotate_to(eve_base);
+      toggle_PB4();
+    }
+    toggle_PB5();
   }
 
   return 0;
-}
-
-ISR(TIMER0_COMPA_vect) //timer0 overflow interrupt
-{
-  ADCSRA |= _BV(ADSC); // Start ADC
-}
-
-ISR(ADC_vect) //timer0 overflow interrupt
-{
-  tx_1byte_USART(ADCH);
-  tx_1byte_USART('\n');
-  ADCSRA |= (0<<ADSC); // End ADC
 }

@@ -20,10 +20,10 @@ void PWM_init( void )
 void rotate_to( unsigned short angle)
 {
   switch(angle){
-    case 0: OCR1A = OCR1A_MIN + 60;break;
-    case 45: OCR1A = OCR1A_MIN + 570;break;
-    case 90: OCR1A = OCR1A_MIN + 1080;break;
-    case 135: OCR1A = OCR1A_MIN + 1590;break;
-    default: break;
+    case 0: OCR1A = OCR1_MIN + 60;break;
+    case 45: OCR1A = OCR1_MIN + 570;break;
+    case 90: OCR1A = OCR1_MIN + 1080;break;
+    case 135: OCR1A = OCR1_MIN + 1590;break;
+    default: OCR1A = OCR1_MIN + 2100;break;
   }
 }

@@ -1,7 +1,7 @@
 #ifndef ___SERVO_H_INCLUDED_
 #define ___SERVO_H_INCLUDED_
 
-#define OCR1A_MIN   610
+#define OCR1_MIN   610
 
 #include<inttypes.h>
 
