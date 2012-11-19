@@ -48,18 +48,31 @@ void calibration_mode(void){
 void manual_mode(void){
   unsigned char c = rx_1byte_USART();
   c = rx_1byte_USART();
-  toggle_PB4();
+  //toggle_PB4();
   unsigned char bob_base = rx_1byte_USART();
   bob_rotate_to(bob_base);
   unsigned char eve_base = rx_1byte_USART();
   eve_rotate_to(eve_base);
   tx_1byte_USART('E');
-  toggle_PB4();
+  //toggle_PB4();
 }
 
-void zero_mode(void){
+void open_mode(void){
   bob_rotate_to('0'); // Rotate polarizers
   eve_rotate_to('0'); //   to zero position
+}
+
+void block_mode(void){
+  bob_rotate_to('0');
+  eve_rotate_to('1');
+}
+
+void on_pd(void){
+  PORTB |= _BV(PB0);
+}
+
+void off_pd(void){
+  PORTB &= ~(_BV(PB0));
 }
 
 /* main */
@@ -68,10 +81,11 @@ int main(void){
   unsigned short i;
   USART_init(UBRR);
   PWM_init();
-  DDRB = _BV(DDB1) | _BV(DDB2);  // Enable PB1(OC1A) and PB2(OC1B) as PWM control 
+  DDRB = _BV(DDB0) | _BV(DDB1) | _BV(DDB2);  // Enable PB1(OC1A) and PB2(OC1B) as PWM control 
 
+  on_pd();
   toggle_PB3(); // Wait lump
-  zero_mode();
+  open_mode();
   while(true){
     c = rx_1byte_USART();
     if(c=='c'){     // Calibration mode
@@ -82,26 +96,32 @@ int main(void){
       manual_mode();
       continue;
     }
-    else if(c=='z'){ // Zero mode
-      zero_mode();
+    else if(c=='o'){ // Open mode
+      open_mode();
+      continue;
+    }
+    else if(c=='b'){ // Block mode
+      block_mode();
       continue;
     }
     else if(c!='s') // Not Start loop
       continue;
-   
-    zero_mode();  // Initialize positions
+  
+    open_mode();  // Initialize positions
     toggle_PB3(); // Turn off wait lump
     _delay_ms(100);
     for(i=0;i<NBITS;i++){
       c = rx_1byte_USART();
       c = rx_1byte_USART();
-      toggle_PB4();
+      //toggle_PB4();
+      off_pd();
       bob_base = rx_1byte_USART();
       bob_rotate_to(bob_base);
       eve_base = rx_1byte_USART();
       eve_rotate_to(eve_base);
-      tx_1byte_USART('E');
-      toggle_PB4();
+      on_pd();
+      //tx_1byte_USART('E');
+      //toggle_PB4();
     }
     toggle_PB3(); // Turn on wait lump
     _delay_ms(2000);

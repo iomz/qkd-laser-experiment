@@ -46,8 +46,12 @@ void manual_mode(void){
   c = rx_1byte_USART();
 }
 
-void zero_mode(void){
+void open_mode(void){
   rotate_polarizer('0','0');
+}
+
+void block_mode(void){
+  rotate_polarizer('1','0');
 }
 
 /* main */
@@ -59,7 +63,7 @@ int main(void){
   DDRB = _BV(DDB1) | _BV(DDB0);  // Enable PB1(OC1A) and PB0 for the laser
 
   toggle_PB3(); // Wait on
-  zero_mode();
+  open_mode();
   while(true){
     c = rx_1byte_USART();
     if(c=='c'){
@@ -78,14 +82,18 @@ int main(void){
       manual_mode();
       continue;
     }
-    else if(c=='z'){ // Zero mode
-      zero_mode();
+    else if(c=='o'){ // Open mode
+      open_mode();
       continue;
     }
-    else if(c!='s') // Not start loop
+    else if(c=='b'){ // Block mode
+      block_mode();
+      continue;
+    }
+    else if(c!='s')  // Not start loop
       continue;
 
-    zero_mode();
+    open_mode();
     on_laser();
     toggle_PB3(); // Wait off
     _delay_ms(100);
