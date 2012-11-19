@@ -31,8 +31,9 @@ int main(){
   len = atoi(getenv("CONTENT_LENGTH"));
   scanf("%s", str);
   
-  if(len == 76) isEve = false;
-  else if(len == 96) isEve = true;
+  /*if(len == 76) isEve = false;
+	else */
+  if(len == 96) isEve = true;
   else{
     printf("content-type: text/html\n\n");
     printf("Error", str);
@@ -57,9 +58,9 @@ int main(){
 		if(!isEve && eq_flag==3) break;
 		eq_flag ++;
 		continue;
-      }else if(str[i] != '0' && str[i] != '1'){
+      }else if(str[i] != '0' && str[i] != '1' && str[i] != '2'){
 		printf("content-type: text/html\n\n");
-		printf("Error");
+		printf("Errorだよ");
 		return -1;
       }
       fprintf(fp, "%c ", str[i]);
