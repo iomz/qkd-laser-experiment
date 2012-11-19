@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <errno.h>
 
-void fprintBace(FILE*, int);
+void fprintBasis(FILE*, int);
 
 int main(){
   FILE* result;
@@ -74,13 +74,13 @@ int main(){
     return -1;
   }
   for(i=0;i<4;i++)
-	if(fgets(outputText[i], 64, fp) == NULL){
+	if(fgets(outputText[i], 64, fp) == NULL || outputText[i][0] == '2'){
 	  isEve = false;
 	  break;
 	}
   fclose(fp);
-  fprintf(result, "\t<table width=\"528px\" border=\"1\">\n\t\t<tr><td colspan=\"2\"></td>\n");
-  for(i=0;i<20;i++) fprintf(result, "\t\t\t<td width=\"15px\"><font size=\"1\">%d</font></td>\n", i);
+  fprintf(result, "\t<table class=\"result\" border=\"1\" width=\"528px\" border=\"1\">\n\t\t<tr><td class=\"resultHead\" colspan=\"2\"></td>\n");
+  for(i=0;i<20;i++) fprintf(result, "\t\t\t<td class=\"resultHead\" width=\"15px\"><font size=\"1\">%d</font></td>\n", i);
   fprintf(result, "\t\t</tr>\n");
 
   int rowspan;
@@ -88,28 +88,28 @@ int main(){
   else      rowspan = 2;
   for(i=0;i<2+rowspan;i++){
 	if(i==0)
-	  fprintf(result, "\t\t<tr>\n\t\t\t<td rowspan=\"%d\">Bace</td>\n\n\t\t\t<td>Alice</td>", rowspan);
+	  fprintf(result, "\t\t<tr>\n\t\t\t<td class=\"resultHead\" rowspan=\"%d\">Basis</td>\n\n\t\t\t<td class=\"resultHead2\">Alice</td>", rowspan);
 	else if(i==rowspan)
-	  fprintf(result, "\n\n\t\t</tr><tr>\n\t\t\t<td rowspan=\"2\">Bit</td>\n\n\t\t\t<td>Alice</td>");
+	  fprintf(result, "\n\n\t\t</tr><tr>\n\t\t\t<td class=\"resultHead\" rowspan=\"2\">Bit</td>\n\n\t\t\t<td class=\"resultHead2\">Alice</td>");
 	else if(i==2)
-	  fprintf(result, "\n\n\t\t</tr><tr>\n\n\t\t\t<td>Eve</td>");
+	  fprintf(result, "\n\n\t\t</tr><tr>\n\n\t\t\t<td class=\"resultHead2\">Eve</td>");
 	else
-	  fprintf(result, "\n\n\t\t</tr><tr>\n\n\t\t\t<td>Bob</td>");
+	  fprintf(result, "\n\n\t\t</tr><tr>\n\n\t\t\t<td class=\"resultHead2\">Bob</td>");
 
 	for(j=0;j<20;j++){
 	  if(outputText[1][j*2] == outputText[2][j*2]){
 		if(outputText[0][j*2] == str[j])
-		  fprintf(result, "\n\t\t\t<td style=\"background-color:#6495ed\">");
+		  fprintf(result, "\n\t\t\t<td class=\"resultBody\" style=\"background-color:#6495ed\">");
 		else{
-		  fprintf(result, "\n\t\t\t<td style=\"background-color:#dc143c\">");
+		  fprintf(result, "\n\t\t\t<td class=\"resultBody\" style=\"background-color:#dc143c\">");
 		  isEavesdrop = true;
 		}
-	  }else fprintf(result, "\n\t\t\t<td style=\"background-color:#ffffff\">");
+	  }else fprintf(result, "\n\t\t\t<td class=\"resultBody\">");
 
-	  if(i<=1)              fprintBace(result, outputText[i+1][j*2]);
+	  if(i<=1)              fprintBasis(result, outputText[i+1][j*2]);
 	  else if(i==rowspan)   fprintf(result, "%c", outputText[0][j*2]);
 	  else if(i==rowspan+1) fprintf(result, "%c", str[j]);
-	  else                  fprintBace(result, outputText[3][j*2]);
+	  else                  fprintBasis(result, outputText[3][j*2]);
 	  fprintf(result, "</td>");
 	}
   }
@@ -117,11 +117,11 @@ int main(){
   fprintf(result, "\n\t\t</tr>\n\t</table>\n");
 
   if(isEve){
-	if(isEavesdrop) fprintf(result, "\n<h3 style=\"color:#6495ed\">検知成功！</h3>\n");
-	else            fprintf(result, "\n<h3 style=\"color:#dc143c\">検知失敗…</h3>\n");
+	if(isEavesdrop) fprintf(result, "\n<h3 style=\"color:#6495ed\">Detection Successful</h3>\n");
+	else            fprintf(result, "\n<h3 style=\"color:#dc143c\">Detection Failed</h3>\n");
   }else{
-	if(isEavesdrop) fprintf(result, "\n<h3 style=\"color:#dc143c\">送信失敗…</h3>\n");
-	else            fprintf(result, "\n<h3 style=\"color:#6495ed\">送信成功！</h3>\n");
+	if(isEavesdrop) fprintf(result, "\n<h3 style=\"color:#dc143c\">Distribution Failed</h3>\n");
+	else            fprintf(result, "\n<h3 style=\"color:#6495ed\">Distribution Successful</h3>\n");
   }
   /**************************************/
   while(strcmp(fgets(copyBuf, 128, index), "<!--/result-->\n") != 0);
@@ -145,7 +145,7 @@ int main(){
   return 0;
 }
 
-void fprintBace(FILE* fp, int c){
+void fprintBasis(FILE* fp, int c){
   if(c == '0'){
 	fprintf(fp, "+");
   }else if(c == '1'){

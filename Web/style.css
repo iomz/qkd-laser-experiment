@@ -1,56 +1,68 @@
+@font-face{
+	font-family: 'Colors Of Autumn';
+	src: url('../../Colors Of Autumn.ttf');
+	src: local('Colors Of Autumn  Regular'), local('Colors Of Autumn'),
+	       url('../../fonts/Colors Of Autumn.ttf') format('opentype');
+}
+
 body{
-	text-align:center;
+    text-align:center;
+    background-color:#000000;
+	font-family:'Colors Of Autumn';
 }
 .wrap{
-	position:relative;
-	margin-left: 180px;
-	width:528px;
-	height:500px;
+    background-color:#000000;
+    color:#FFFFFF;
+    position:relative;
+    margin-left: 180px;
+    width:528px;
+    height:500px;
 }
 #flickable {
-	border: 0px;
-	width: 963px;
-	height: 588px;
-	overflow: hidden;
-	float: left;
+    background-color:#000000;
+    border: 0px;
+    width: 963px;
+    height: 588px;
+    overflow: hidden;
+    float: left;
 }
 #flickable ul {
-	list-style: none;
-	width:3000px;
-	margin: 0;
-	padding: 5px;
+    list-style: none;
+    width:3000px;
+    margin: 0;
+    padding: 5px;
 }
 #flickable ul li {
-	margin: 0;
-	padding: 20px;
-	float: left;
+    margin: 0;
+    padding: 20px;
+    float: left;
 }
 #flickable .block {
-	width: 900px;
-	height: 528px;
-	padding: 10px;
-	float:left;
+    width: 900px;
+    height: 528px;
+    padding: 10px;
+    float:left;
 }
 #flickable h4 {
-	color: #FFF;
+    color: #FFF;
 }
 #flickable .ui-flickable-container {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .button{
-	width:50px;
-	height:50px;
-	font-size:200%;
+    width:50px;
+    height:50px;
+    font-size:200%;
 }
 
 .header{
-	text-align:left;
+    text-align:left;
 }
 
 .footer{
-	height:100px;
-	text-align:right;
+    height:100px;
+    text-align:right;
 }
 
 button {
@@ -59,8 +71,49 @@ button {
     margin:0;
     background:none;
     border:0;
-    font-size:0;
     line-height:0;
     overflow:visible;
     cursor:pointer;
+}
+
+table{
+    background-color:#000000;
+    color:#FFFFFF;
+    font-family:sans-serif;
+}
+
+input{
+    font-family:Colors Of Autumn;
+}
+
+.operate{
+    background-color:#33AAFF;
+    color:#000000;
+    font-size:200%;
+}
+
+table.result {
+    border-top:1px solid #FFFFFF;
+    border-left:1px solid #FFFFFF;
+    border-spacing:0;
+    background-color:#FFFFFF;
+    empty-cells:show;
+}
+.resultHead{
+    border-bottom:1px solid #FFFFFF;
+    border-right:1px solid #FFFFFF;
+    color:#FFFFFF;
+    background-color:#000000;
+}
+.resultHead2{
+    border-bottom:1px solid #FFFFFF;
+    border-right:1px solid #FFFFFF;
+    color:#FFFFFF;
+    background-color:#000000;
+}
+.resultBody{
+    border-bottom:1px solid #003344;
+    border-right:1px solid #003344;
+    color:#003333;
+    background-color:#FFFFFF;
 }

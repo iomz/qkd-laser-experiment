@@ -26,7 +26,7 @@ function downimg(id){
 	if(button.value == "0")			button.innerHTML = "<img src='./button/0p.png'>";
 	else if(button.value == "1")	button.innerHTML = "<img src='./button/1p.png'>";
 	else if(button.value == "+")	button.innerHTML = "<img src='./button/pp.png'>";
-	else if(button.value == "×")	button.innerHTML = "<img src='.button/tp.png'>";
+	else if(button.value == "×")   button.innerHTML = "<img src='./button/tp.png'>";
 	bufID = id;
 }
 function upimg(id, isUp){
