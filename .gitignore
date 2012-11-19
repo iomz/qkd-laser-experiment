@@ -6,5 +6,7 @@
 #.pyc
 
 #Vim swapfile
-*.swap
 *.swp
+
+#Mac index file
+.DS_Store
