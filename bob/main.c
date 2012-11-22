@@ -28,7 +28,8 @@ void bob_rotate_to( unsigned char angle){
   switch(angle){
     case '0': OCR1A = OCR1_MIN + 60;break;  // 0 degree
     case '1': OCR1A = OCR1_MIN + 570;break; // 45 degree
-    default: OCR1A = OCR1_MIN + 2100;break; // Calibration point
+    //default: OCR1A = OCR1_MIN + 2100;break; // Calibration point
+    default: break;
   }
 }
 
@@ -36,13 +37,8 @@ void eve_rotate_to( unsigned char angle){
   switch(angle){
     case '0': OCR1B = OCR1_MIN + 60;break;  // 0 degree
     case '1': OCR1B = OCR1_MIN + 570;break; // 45 degree
-    default: OCR1B = OCR1_MIN + 2100;break; // Calibration point
+    default: OCR1B = OCR1_MIN + 1201;break; // Calibration point
   }
-}
-
-void calibration_mode(void){
-  bob_rotate_to('2'); // Rotate polarizers
-  eve_rotate_to('2'); //   to calibration positions
 }
 
 void manual_mode(void){
@@ -57,22 +53,18 @@ void manual_mode(void){
   //toggle_PB4();
 }
 
-void open_mode(void){
-  bob_rotate_to('0'); // Rotate polarizers
-  eve_rotate_to('0'); //   to zero position
-}
-
-void block_mode(void){
-  bob_rotate_to('0');
-  eve_rotate_to('1');
-}
-
 void on_pd(void){
   PORTB |= _BV(PB0);
 }
 
 void off_pd(void){
   PORTB &= ~(_BV(PB0));
+}
+
+void open_mode(void){
+  bob_rotate_to('0');
+  _delay_ms(10);
+  eve_rotate_to('2');
 }
 
 /* main */
@@ -83,47 +75,36 @@ int main(void){
   PWM_init();
   DDRB = _BV(DDB0) | _BV(DDB1) | _BV(DDB2);  // Enable PB1(OC1A) and PB2(OC1B) as PWM control 
 
-  on_pd();
-  toggle_PB3(); // Wait lump
+  toggle_PB5(); // Wait lump
   open_mode();
   while(true){
     c = rx_1byte_USART();
-    if(c=='c'){     // Calibration mode
-      calibration_mode();
-      continue;
-    }
-    else if(c=='m'){ // Manual mode
+    if(c=='m'){ // Manual mode
       manual_mode();
       continue;
     }
-    else if(c=='o'){ // Open mode
-      open_mode();
-      continue;
-    }
-    else if(c=='b'){ // Block mode
-      block_mode();
+    else if(c=='p'){ // Toggle Photodiode measuring
+      PORTB ^= _BV(PB0);
       continue;
     }
     else if(c!='s') // Not Start loop
       continue;
   
+    on_pd(); // On Photodiode measurement
     open_mode();  // Initialize positions
-    toggle_PB3(); // Turn off wait lump
+    toggle_PB5(); // Turn off wait lump
     _delay_ms(100);
     for(i=0;i<NBITS;i++){
       c = rx_1byte_USART();
       c = rx_1byte_USART();
-      //toggle_PB4();
       off_pd();
       bob_base = rx_1byte_USART();
       bob_rotate_to(bob_base);
       eve_base = rx_1byte_USART();
       eve_rotate_to(eve_base);
       on_pd();
-      //tx_1byte_USART('E');
-      //toggle_PB4();
     }
-    toggle_PB3(); // Turn on wait lump
+    toggle_PB5(); // Turn on wait lump
     _delay_ms(2000);
    }
 

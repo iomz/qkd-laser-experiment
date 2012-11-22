@@ -16,7 +16,7 @@ void USART_init( unsigned int ubrr )
 unsigned char rx_1byte_USART( void )
 {
   loop_until_bit_is_set(UCSR0A, RXC0);
-  toggle_PB5();
+  //toggle_PB5();
   return UDR0;
 }
 

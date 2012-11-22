@@ -14,8 +14,8 @@ import serial
 FILE_PATH = "http://aqua-cat.sfc.wide.ad.jp/ORF2012/output.txt"
 CGI_PATH = "http://aqua-cat.sfc.wide.ad.jp/ORF2012/result.cgi"
 KEY_SIZE = 20
-#NMEASURES = 10
-#NCALIBRATIONS = 10 # Must be an odd number
+NMEASURES = 10
+NCALIBRATIONS = 33 # Must be an odd number
 
 # RS232C init
 def rs232(device):
@@ -94,18 +94,11 @@ def auto_calibration(ser):
     thld = [0]*2
     bit_tmp = [0]*NCALIBRATIONS
 
-    # A0:1, B0, E2, Block State
-    ser.write('m')
-    ser.write('0')
-    ser.write('1')
-    ser.write('0')
-    ser.write('2')
+    ser.write('b')
     for i in range(0,NCALIBRATIONS):
         tmp = sub(r'\D','',ser.readline())
         if tmp == '':
             tmp = '0'
-        elif 999 < int(tmp):
-            continue
         bit_tmp[i] = int(tmp)
         sleep(0.1)
 
@@ -114,18 +107,11 @@ def auto_calibration(ser):
     thld[0] = bit_tmp[NCALIBRATIONS/2]
    
     sleep(3)
-    # A0:0, B0, E2, Open State
-    ser.write('m')
-    ser.write('0')
-    ser.write('0')
-    ser.write('0')
-    ser.write('2')
+    ser.write('o')
     for i in range(0,NCALIBRATIONS):
         tmp = sub(r'\D','',ser.readline())
         if tmp == '':
             tmp = '0'
-        elif 999 < int(tmp):
-            continue
         bit_tmp[i] = int(tmp)
         sleep(0.1)
 
@@ -136,73 +122,21 @@ def auto_calibration(ser):
     return thld
 
 
-def start_qkd(ser, cur, thld):
-    ser.write('s')
-    print 'QKD demo started!'
-    for i in range(0,KEY_SIZE):
-        ser.write(cur.alice_bit.getof(i))
-        print cur.alice_bit.getof(i)
-        sleep(0.2)
-        ser.write(cur.alice_base.getof(i))
-        print cur.alice_base.getof(i)
-        sleep(0.2)
-        ser.write(cur.bob_base.getof(i))
-        print cur.bob_base.getof(i)
-        sleep(0.2)
-        ser.write(cur.eve_base.getof(i))
-        print cur.eve_base.getof(i)
-        sleep(0.6)
-        for i in range(0,5):
-            print ser.readline()
-#
-#        bit_tmp = 0
-#        for j in range(0,NMEASURES):
-#            tmp = sub(r'\D','',ser.readline())
-#            if tmp =='':
-#               tmp = '0'
-#            bit_tmp += int(tmp)
-#        bit_tmp = bit_tmp/10.0
-        
-#        if bit_tmp <= thld[0]:
-#            bob_bit += '0'
-#        elif thld[1] <= bit_tmp:
-#            bob_bit += '1'
-#        else:
-#            bob_bit += random.choice('01')
-    
-    bob_bit = "11111111000000011101"
+def start_qkd():
+    bob_bit = "00110011001111000111"
     cmd = "wget -q -O - --no-check-certificate --post-data 'result=" + bob_bit + "' " + CGI_PATH 
     call(split(cmd))
 
 
 if __name__ == "__main__":
-    if len(argv) != 2:
-        print "Usage: %s <serial port>"%argv[0]
-
-    try:
-        ser = rs232(argv[1])
-    except:
-        print "Connection falied!"
-        exit()
-
-    ser.isOpen()
-
     current = bitcombo()
     stored = bitcombo()
     retrieve(stored)
     stored.show()
 
-    #thld = auto_calibration(ser) # Threshold for 0 and 1
-    thld = [10,210]
-    print "Calibrated threshold is: [0]<=%d, %d<=[1]" % (thld[0],thld[1])
-
     while 1:
         retrieve(current)
-        if current.is_same_as(stored):
-            sleep(5)
-            continue
-        
         stored.copy(current)
         current.show()
         bob_bit = bitline()
-        start_qkd(ser, current, thld)
+        start_qkd()

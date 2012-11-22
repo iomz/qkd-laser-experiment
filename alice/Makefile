@@ -4,7 +4,7 @@ F_CPU=8000000
 
 COMPILEC = avr-gcc -Wall -O2 -Iusbdrv -I.-DF_CPU=$(F_CPU) -mmcu=$(MCU) # -DDEBUG_LEVEL=2
 
-OBJECTS =  main.o rs232.o servo.o
+OBJECTS =  main.o rs232.o
 TARGET = main.hex
 
 # symbolic targets:

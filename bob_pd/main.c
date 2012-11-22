@@ -33,5 +33,5 @@ ISR(ADC_vect){ // ADC complete interrupt
   sprintf(str, "%d", val);
   tx_string_USART(str);  
   tx_1byte_USART('\n');
-  _delay_ms(100);
+  _delay_ms(300);
 }
