@@ -40,13 +40,13 @@ void PWM_init( void )
 
 // Precondition: both bit and base must be 0 or 1
 void rotate_polarizer(unsigned char bit, unsigned char base){
-  if (bit == '0' && base == '0')
+  if (bit == '1' && base == '0')
     rotate_to(0);
-  else if (bit == '1' && base == '0')
-    rotate_to(90);
-  else if (bit == '1' && base == '1')
-    rotate_to(45);
   else if (bit == '0' && base == '1')
+    rotate_to(90);
+  else if (bit == '0' && base == '0')
+    rotate_to(45);
+  else if (bit == '1' && base == '1')
     rotate_to(135);
   else
     rotate_to(180);
