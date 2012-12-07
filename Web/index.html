@@ -2,7 +2,8 @@
 <head>
   <title>QKD Demo</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" media="screen" href="./style.css">
+  <meta name="viewport" content="user-scalable=no"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="./style.css"/>
   
   <script src="./js/jquery-1.4.2.min.js" type="text/javascript"></script>
   <script src="./js/view_source.js" type="text/javascript"></script>
@@ -11,14 +12,20 @@
   <script src="./js/ABE.js" type="text/javascript"></script>
   <script src="./js/change.js" type="text/javascript"></script>
 </head>
-<body>
-  <div id="flickable">
-    <ul>
-      <li><div class="block">
-	  <div class="wrap">
-	    <div class="header">
-	      <h1>Result</h1>
-	    </div>
+<body onload="setRandomAlice();setRandomBob();setRandomEve();">
+  <div id="page">
+	<div id="leftFrame">
+	  <span>
+		<button type="button" class="toResult"><img src="./button/result.png"/></button>
+	  </span>
+	</div>
+	<div id="flickable">
+      <ul>
+		<li><div class="block">
+			<div class="wrap">
+			  <div class="header">
+				<h1>Result</h1>
+			  </div>
 <!--result-->
 	<table class="result" border="1" width="528px" border="1">
 		<tr><td class="resultHead" colspan="2"></td>
@@ -44,316 +51,364 @@
 			<td class="resultHead" width="15px"><font size="1">19</font></td>
 		</tr>
 		<tr>
-			<td class="resultHead" rowspan="2">Basis</td>
+			<td class="resultHead" rowspan="3">Basis</td>
 
 			<td class="resultHead2">Alice</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
+			<td class="resultBody">+</td>
 			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody">+</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
 			<td class="resultBody" style="background-color:#dc143c">+</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody">+</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody">×</td>
+			<td class="resultBody">+</td>
 
 		</tr><tr>
 
 			<td class="resultHead2">Bob</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
+			<td class="resultBody">×</td>
 			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody">×</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
 			<td class="resultBody" style="background-color:#dc143c">+</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody">×</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
+			<td class="resultBody">×</td>
+
+		</tr><tr>
+
+			<td class="resultHead2">Eve</td>
+			<td class="resultBody">×</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
+			<td class="resultBody">×</td>
 			<td class="resultBody">+</td>
 			<td class="resultBody">+</td>
 			<td class="resultBody">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody" style="background-color:#6495ed">+</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody" style="background-color:#dc143c">×</td>
+			<td class="resultBody" style="background-color:#6495ed">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
 			<td class="resultBody">+</td>
-			<td class="resultBody">+</td>
-			<td class="resultBody">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody" style="background-color:#6495ed">+</td>
+			<td class="resultBody" style="background-color:#dc143c">×</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
 			<td class="resultBody">+</td>
 
 		</tr><tr>
 			<td class="resultHead" rowspan="2">Bit</td>
 
 			<td class="resultHead2">Alice</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody">0</td>
 			<td class="resultBody" style="background-color:#6495ed">0</td>
-			<td class="resultBody" style="background-color:#dc143c">0</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
+			<td class="resultBody">1</td>
 			<td class="resultBody" style="background-color:#dc143c">0</td>
 			<td class="resultBody" style="background-color:#6495ed">0</td>
-			<td class="resultBody" style="background-color:#dc143c">0</td>
-			<td class="resultBody" style="background-color:#6495ed">0</td>
-			<td class="resultBody" style="background-color:#dc143c">0</td>
-			<td class="resultBody" style="background-color:#dc143c">1</td>
-			<td class="resultBody" style="background-color:#dc143c">1</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
 			<td class="resultBody" style="background-color:#6495ed">1</td>
 			<td class="resultBody" style="background-color:#dc143c">0</td>
-			<td class="resultBody" style="background-color:#dc143c">0</td>
-			<td class="resultBody" style="background-color:#dc143c">1</td>
-			<td class="resultBody">0</td>
-			<td class="resultBody">0</td>
-			<td class="resultBody">0</td>
-			<td class="resultBody">0</td>
 			<td class="resultBody">1</td>
 			<td class="resultBody">1</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
 			<td class="resultBody">1</td>
 
 		</tr><tr>
 
 			<td class="resultHead2">Bob</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
+			<td class="resultBody">0</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody">0</td>
+			<td class="resultBody">1</td>
 			<td class="resultBody" style="background-color:#6495ed">0</td>
-			<td class="resultBody" style="background-color:#dc143c">1</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
+			<td class="resultBody">0</td>
 			<td class="resultBody" style="background-color:#dc143c">1</td>
 			<td class="resultBody" style="background-color:#6495ed">0</td>
-			<td class="resultBody" style="background-color:#dc143c">1</td>
-			<td class="resultBody" style="background-color:#6495ed">0</td>
-			<td class="resultBody" style="background-color:#dc143c">1</td>
-			<td class="resultBody" style="background-color:#dc143c">0</td>
-			<td class="resultBody" style="background-color:#dc143c">0</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
 			<td class="resultBody" style="background-color:#6495ed">1</td>
 			<td class="resultBody" style="background-color:#dc143c">1</td>
-			<td class="resultBody" style="background-color:#dc143c">1</td>
-			<td class="resultBody" style="background-color:#dc143c">0</td>
-			<td class="resultBody">1</td>
-			<td class="resultBody">1</td>
 			<td class="resultBody">0</td>
 			<td class="resultBody">1</td>
-			<td class="resultBody">1</td>
-			<td class="resultBody">0</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
 			<td class="resultBody">1</td>
 		</tr>
 	</table>
 
-<h3 style="color:#dc143c">Distribution Failed</h3>
+<h3 style="color:#6495ed">Detection Successful</h3>
 <!--/result-->
-		<div class="footer">
-		  <br/>
-		  <form>
-		    <button type="button" id="again"><img src="./button/again.png"/></button>
-		  </form>
-		</div>
-	  </div>
-      </div></li>
-      <li><div class="block">
-      </div></li>
-      <li><div class="block">
-	  <form method="POST" action="./output.cgi" name="frm">
-	    <input type="text" name="alice" id="alice" value="">
-	    <input type="text" name="bob" id="bob" value="">
-	    <input type="text" name="eve" id="eve" value="22222222222222222222">
-	  </form>
-      </div></li>
-      <li>
-	<div class="block">
-	  <div class="wrap">
-	    <div class="header">
-	      <h1>Alice - sender</h1>
-	    </div>
-	    <form>
-	      <table border="4" rules="groups">
-		<thead>
-		  <tr>
-		    <td colspan="10" align="center">
-		      <button type="button" onclick="setRandomAlice()"><img src="./button/random.png"/></button>
-		    </td>
-		  </tr>
-		</thead>
-		<tbody>
-		  <tr align="center">
-		    <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
-		  </tr>
-		  <tr>
-		    <td><button type="button" id="abit0" value="0" class="button cancel" onmousedown="downimg('abit0')" onmouseup="upimg('abit0', 1)" onmouseout="upimg('abit0', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit1" value="0" class="button cancel" onmousedown="downimg('abit1')" onmouseup="upimg('abit1', 1)" onmouseout="upimg('abit1', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit2" value="0" class="button cancel" onmousedown="downimg('abit2')" onmouseup="upimg('abit2', 1)" onmouseout="upimg('abit2', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit3" value="0" class="button cancel" onmousedown="downimg('abit3')" onmouseup="upimg('abit3', 1)" onmouseout="upimg('abit3', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit4" value="0" class="button cancel" onmousedown="downimg('abit4')" onmouseup="upimg('abit4', 1)" onmouseout="upimg('abit4', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit5" value="0" class="button cancel" onmousedown="downimg('abit5')" onmouseup="upimg('abit5', 1)" onmouseout="upimg('abit5', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit6" value="0" class="button cancel" onmousedown="downimg('abit6')" onmouseup="upimg('abit6', 1)" onmouseout="upimg('abit6', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit7" value="0" class="button cancel" onmousedown="downimg('abit7')" onmouseup="upimg('abit7', 1)" onmouseout="upimg('abit7', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit8" value="0" class="button cancel" onmousedown="downimg('abit8')" onmouseup="upimg('abit8', 1)" onmouseout="upimg('abit8', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit9" value="0" class="button cancel" onmousedown="downimg('abit9')" onmouseup="upimg('abit9', 1)" onmouseout="upimg('abit9', 0)"><img src="./button/0.png"></button></td>
-		  </tr><tr>
-		    <td><button type="button" id="abase0" value="+" class="button cancel" onmousedown="downimg('abase0')" onmouseup="upimg('abase0', 1)" onmouseout="upimg('abase0', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase1" value="+" class="button cancel" onmousedown="downimg('abase1')" onmouseup="upimg('abase1', 1)" onmouseout="upimg('abase1', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase2" value="+" class="button cancel" onmousedown="downimg('abase2')" onmouseup="upimg('abase2', 1)" onmouseout="upimg('abase2', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase3" value="+" class="button cancel" onmousedown="downimg('abase3')" onmouseup="upimg('abase3', 1)" onmouseout="upimg('abase3', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase4" value="+" class="button cancel" onmousedown="downimg('abase4')" onmouseup="upimg('abase4', 1)" onmouseout="upimg('abase4', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase5" value="+" class="button cancel" onmousedown="downimg('abase5')" onmouseup="upimg('abase5', 1)" onmouseout="upimg('abase5', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase6" value="+" class="button cancel" onmousedown="downimg('abase6')" onmouseup="upimg('abase6', 1)" onmouseout="upimg('abase6', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase7" value="+" class="button cancel" onmousedown="downimg('abase7')" onmouseup="upimg('abase7', 1)" onmouseout="upimg('abase7', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase8" value="+" class="button cancel" onmousedown="downimg('abase8')" onmouseup="upimg('abase8', 1)" onmouseout="upimg('abase8', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase9" value="+" class="button cancel" onmousedown="downimg('abase9')" onmouseup="upimg('abase9', 1)" onmouseout="upimg('abase9', 0)"><img src="./button/p.png"></button></td>
-		  </tr>
-		</tbody>
-		<tbody>
-		  <tr align="center">
-		    <td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
-		  <tr>
-		    <td><button type="button" id="abit10" value="0" class="button cancel" onmousedown="downimg('abit10')" onmouseup="upimg('abit10', 1)" onmouseout="upimg('abit10', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit11" value="0" class="button cancel" onmousedown="downimg('abit11')" onmouseup="upimg('abit11', 1)" onmouseout="upimg('abit11', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit12" value="0" class="button cancel" onmousedown="downimg('abit12')" onmouseup="upimg('abit12', 1)" onmouseout="upimg('abit12', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit13" value="0" class="button cancel" onmousedown="downimg('abit13')" onmouseup="upimg('abit13', 1)" onmouseout="upimg('abit13', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit14" value="0" class="button cancel" onmousedown="downimg('abit14')" onmouseup="upimg('abit14', 1)" onmouseout="upimg('abit14', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit15" value="0" class="button cancel" onmousedown="downimg('abit15')" onmouseup="upimg('abit15', 1)" onmouseout="upimg('abit15', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit16" value="0" class="button cancel" onmousedown="downimg('abit16')" onmouseup="upimg('abit16', 1)" onmouseout="upimg('abit16', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit17" value="0" class="button cancel" onmousedown="downimg('abit17')" onmouseup="upimg('abit17', 1)" onmouseout="upimg('abit17', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit18" value="0" class="button cancel" onmousedown="downimg('abit18')" onmouseup="upimg('abit18', 1)" onmouseout="upimg('abit18', 0)"><img src="./button/0.png"></button></td>
-		    <td><button type="button" id="abit19" value="0" class="button cancel" onmousedown="downimg('abit19')" onmouseup="upimg('abit19', 1)" onmouseout="upimg('abit19', 0)"><img src="./button/0.png"></button></td>
-		  </tr><tr>
-		    <td><button type="button" id="abase10" value="+" class="button cancel" onmousedown="downimg('abase10')" onmouseup="upimg('abase10', 1)" onmouseout="upimg('abase10', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase11" value="+" class="button cancel" onmousedown="downimg('abase11')" onmouseup="upimg('abase11', 1)" onmouseout="upimg('abase11', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase12" value="+" class="button cancel" onmousedown="downimg('abase12')" onmouseup="upimg('abase12', 1)" onmouseout="upimg('abase12', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase13" value="+" class="button cancel" onmousedown="downimg('abase13')" onmouseup="upimg('abase13', 1)" onmouseout="upimg('abase13', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase14" value="+" class="button cancel" onmousedown="downimg('abase14')" onmouseup="upimg('abase14', 1)" onmouseout="upimg('abase14', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase15" value="+" class="button cancel" onmousedown="downimg('abase15')" onmouseup="upimg('abase15', 1)" onmouseout="upimg('abase15', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase16" value="+" class="button cancel" onmousedown="downimg('abase16')" onmouseup="upimg('abase16', 1)" onmouseout="upimg('abase16', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase17" value="+" class="button cancel" onmousedown="downimg('abase17')" onmouseup="upimg('abase17', 1)" onmouseout="upimg('abase17', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase18" value="+" class="button cancel" onmousedown="downimg('abase18')" onmouseup="upimg('abase18', 1)" onmouseout="upimg('abase18', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="abase19" value="+" class="button cancel" onmousedown="downimg('abase19')" onmouseup="upimg('abase19', 1)" onmouseout="upimg('abase19', 0)"><img src="./button/p.png"></button></td>
-		  </tr>
-		</tbody>
-	      </table>
-	      <div class="footer">
-		<br/>
-		<button type="button" id="send" onclick="setValAlice()"><img src="./button/send.png"/></button>
-	      </div>
-	    </form>
-	  </div>
+			  <div class="footer">
+				<div style="float:left">
+				  <table border="0" class="replayTable">
+					<tr><td style="border-bottom:1px solid #FFFFFF;">
+						Without Input
+					</td></tr>
+					<tr><td>
+						<button type="button" onclick="setValAlice();setValBob();document.frm.submit();"><img src="./button/without.png"/></button>
+					</td></tr>
+					<tr><td>
+						<button type="button" onclick="setValAlice();setValBob();setValEve();document.frm.submit();"><img src="./button/with.png"/></button>
+					</td></tr>
+				  </table>
+				</div>
+				<div style="float:right">
+				  <br/>
+				  <button type="button" class="toAlice"><img src="./button/again.png"/></button>
+				</div>
+			  </div>
+			</div>
+		</div></li>
+		<li>
+		  <div class="block">
+			<div class="wrap">
+			  <div class="header">
+				<h1>Alice - sender</h1>
+			  </div>
+			  <form>
+				<table border="4" rules="groups">
+				  <thead>
+					<tr>
+					  <td colspan="10" align="center">
+						<button type="button" onclick="setRandomAlice()"><img src="./button/random.png"/></button>
+					  </td>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr align="center">
+					  <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
+					</tr>
+					<tr>
+					  <td><button type="button" id="abit0" value="0" class="button cancel" onmousedown="downimg('abit0')" onmouseup="upimg('abit0', 1)" onmouseout="upimg('abit0', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit1" value="0" class="button cancel" onmousedown="downimg('abit1')" onmouseup="upimg('abit1', 1)" onmouseout="upimg('abit1', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit2" value="0" class="button cancel" onmousedown="downimg('abit2')" onmouseup="upimg('abit2', 1)" onmouseout="upimg('abit2', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit3" value="0" class="button cancel" onmousedown="downimg('abit3')" onmouseup="upimg('abit3', 1)" onmouseout="upimg('abit3', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit4" value="0" class="button cancel" onmousedown="downimg('abit4')" onmouseup="upimg('abit4', 1)" onmouseout="upimg('abit4', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit5" value="0" class="button cancel" onmousedown="downimg('abit5')" onmouseup="upimg('abit5', 1)" onmouseout="upimg('abit5', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit6" value="0" class="button cancel" onmousedown="downimg('abit6')" onmouseup="upimg('abit6', 1)" onmouseout="upimg('abit6', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit7" value="0" class="button cancel" onmousedown="downimg('abit7')" onmouseup="upimg('abit7', 1)" onmouseout="upimg('abit7', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit8" value="0" class="button cancel" onmousedown="downimg('abit8')" onmouseup="upimg('abit8', 1)" onmouseout="upimg('abit8', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit9" value="0" class="button cancel" onmousedown="downimg('abit9')" onmouseup="upimg('abit9', 1)" onmouseout="upimg('abit9', 0)"><img src="./button/0.png"></button></td>
+					</tr><tr>
+					  <td><button type="button" id="abase0" value="+" class="button cancel" onmousedown="downimg('abase0')" onmouseup="upimg('abase0', 1)" onmouseout="upimg('abase0', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase1" value="+" class="button cancel" onmousedown="downimg('abase1')" onmouseup="upimg('abase1', 1)" onmouseout="upimg('abase1', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase2" value="+" class="button cancel" onmousedown="downimg('abase2')" onmouseup="upimg('abase2', 1)" onmouseout="upimg('abase2', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase3" value="+" class="button cancel" onmousedown="downimg('abase3')" onmouseup="upimg('abase3', 1)" onmouseout="upimg('abase3', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase4" value="+" class="button cancel" onmousedown="downimg('abase4')" onmouseup="upimg('abase4', 1)" onmouseout="upimg('abase4', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase5" value="+" class="button cancel" onmousedown="downimg('abase5')" onmouseup="upimg('abase5', 1)" onmouseout="upimg('abase5', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase6" value="+" class="button cancel" onmousedown="downimg('abase6')" onmouseup="upimg('abase6', 1)" onmouseout="upimg('abase6', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase7" value="+" class="button cancel" onmousedown="downimg('abase7')" onmouseup="upimg('abase7', 1)" onmouseout="upimg('abase7', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase8" value="+" class="button cancel" onmousedown="downimg('abase8')" onmouseup="upimg('abase8', 1)" onmouseout="upimg('abase8', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase9" value="+" class="button cancel" onmousedown="downimg('abase9')" onmouseup="upimg('abase9', 1)" onmouseout="upimg('abase9', 0)"><img src="./button/p.png"></button></td>
+					</tr>
+				  </tbody>
+				  <tbody>
+					<tr align="center">
+					  <td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+					<tr>
+					  <td><button type="button" id="abit10" value="0" class="button cancel" onmousedown="downimg('abit10')" onmouseup="upimg('abit10', 1)" onmouseout="upimg('abit10', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit11" value="0" class="button cancel" onmousedown="downimg('abit11')" onmouseup="upimg('abit11', 1)" onmouseout="upimg('abit11', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit12" value="0" class="button cancel" onmousedown="downimg('abit12')" onmouseup="upimg('abit12', 1)" onmouseout="upimg('abit12', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit13" value="0" class="button cancel" onmousedown="downimg('abit13')" onmouseup="upimg('abit13', 1)" onmouseout="upimg('abit13', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit14" value="0" class="button cancel" onmousedown="downimg('abit14')" onmouseup="upimg('abit14', 1)" onmouseout="upimg('abit14', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit15" value="0" class="button cancel" onmousedown="downimg('abit15')" onmouseup="upimg('abit15', 1)" onmouseout="upimg('abit15', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit16" value="0" class="button cancel" onmousedown="downimg('abit16')" onmouseup="upimg('abit16', 1)" onmouseout="upimg('abit16', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit17" value="0" class="button cancel" onmousedown="downimg('abit17')" onmouseup="upimg('abit17', 1)" onmouseout="upimg('abit17', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit18" value="0" class="button cancel" onmousedown="downimg('abit18')" onmouseup="upimg('abit18', 1)" onmouseout="upimg('abit18', 0)"><img src="./button/0.png"></button></td>
+					  <td><button type="button" id="abit19" value="0" class="button cancel" onmousedown="downimg('abit19')" onmouseup="upimg('abit19', 1)" onmouseout="upimg('abit19', 0)"><img src="./button/0.png"></button></td>
+					</tr><tr>
+					  <td><button type="button" id="abase10" value="+" class="button cancel" onmousedown="downimg('abase10')" onmouseup="upimg('abase10', 1)" onmouseout="upimg('abase10', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase11" value="+" class="button cancel" onmousedown="downimg('abase11')" onmouseup="upimg('abase11', 1)" onmouseout="upimg('abase11', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase12" value="+" class="button cancel" onmousedown="downimg('abase12')" onmouseup="upimg('abase12', 1)" onmouseout="upimg('abase12', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase13" value="+" class="button cancel" onmousedown="downimg('abase13')" onmouseup="upimg('abase13', 1)" onmouseout="upimg('abase13', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase14" value="+" class="button cancel" onmousedown="downimg('abase14')" onmouseup="upimg('abase14', 1)" onmouseout="upimg('abase14', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase15" value="+" class="button cancel" onmousedown="downimg('abase15')" onmouseup="upimg('abase15', 1)" onmouseout="upimg('abase15', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase16" value="+" class="button cancel" onmousedown="downimg('abase16')" onmouseup="upimg('abase16', 1)" onmouseout="upimg('abase16', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase17" value="+" class="button cancel" onmousedown="downimg('abase17')" onmouseup="upimg('abase17', 1)" onmouseout="upimg('abase17', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase18" value="+" class="button cancel" onmousedown="downimg('abase18')" onmouseup="upimg('abase18', 1)" onmouseout="upimg('abase18', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="abase19" value="+" class="button cancel" onmousedown="downimg('abase19')" onmouseup="upimg('abase19', 1)" onmouseout="upimg('abase19', 0)"><img src="./button/p.png"></button></td>
+					</tr>
+				  </tbody>
+				</table>
+				<div class="footer">
+				  <br/>
+				  <button type="button" class="toBob" onclick="setValAlice()"><img src="./button/send.png"/></button>
+				</div>
+			  </form>
+			</div>
+		  </div>
+		</li>
+		<li>
+		  <div class="block">
+			<div class="wrap">
+			  <div class="header">
+				<h1>Bob - receiver</h1>
+			  </div>
+			  <form>
+				<table border="4" rules="groups">
+				  <thead>
+					<tr>
+					  <td colspan="10" align="center">
+						<button type="button" onclick="setRandomBob()"><img src="./button/random.png"/></button>
+					  </td>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr align="center">
+					  <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
+					</tr><tr>
+					  <td><button type="button" id="bbase0" value="+" class="button cancel" onmousedown="downimg('bbase0')" onmouseup="upimg('bbase0', 1)" onmouseout="upimg('bbase0', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase1" value="+" class="button cancel" onmousedown="downimg('bbase1')" onmouseup="upimg('bbase1', 1)" onmouseout="upimg('bbase1', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase2" value="+" class="button cancel" onmousedown="downimg('bbase2')" onmouseup="upimg('bbase2', 1)" onmouseout="upimg('bbase2', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase3" value="+" class="button cancel" onmousedown="downimg('bbase3')" onmouseup="upimg('bbase3', 1)" onmouseout="upimg('bbase3', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase4" value="+" class="button cancel" onmousedown="downimg('bbase4')" onmouseup="upimg('bbase4', 1)" onmouseout="upimg('bbase4', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase5" value="+" class="button cancel" onmousedown="downimg('bbase5')" onmouseup="upimg('bbase5', 1)" onmouseout="upimg('bbase5', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase6" value="+" class="button cancel" onmousedown="downimg('bbase6')" onmouseup="upimg('bbase6', 1)" onmouseout="upimg('bbase6', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase7" value="+" class="button cancel" onmousedown="downimg('bbase7')" onmouseup="upimg('bbase7', 1)" onmouseout="upimg('bbase7', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase8" value="+" class="button cancel" onmousedown="downimg('bbase8')" onmouseup="upimg('bbase8', 1)" onmouseout="upimg('bbase8', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase9" value="+" class="button cancel" onmousedown="downimg('bbase9')" onmouseup="upimg('bbase9', 1)" onmouseout="upimg('bbase9', 0)"><img src="./button/p.png"></button></td>
+					</tr>
+				  </tbody>
+				  <tbody>
+					<tr align="center">
+					  <td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+					</tr><tr>
+					  <td><button type="button" id="bbase10" value="+" class="button cancel" onmousedown="downimg('bbase10')" onmouseup="upimg('bbase10', 1)" onmouseout="upimg('bbase10', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase11" value="+" class="button cancel" onmousedown="downimg('bbase11')" onmouseup="upimg('bbase11', 1)" onmouseout="upimg('bbase11', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase12" value="+" class="button cancel" onmousedown="downimg('bbase12')" onmouseup="upimg('bbase12', 1)" onmouseout="upimg('bbase12', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase13" value="+" class="button cancel" onmousedown="downimg('bbase13')" onmouseup="upimg('bbase13', 1)" onmouseout="upimg('bbase13', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase14" value="+" class="button cancel" onmousedown="downimg('bbase14')" onmouseup="upimg('bbase14', 1)" onmouseout="upimg('bbase14', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase15" value="+" class="button cancel" onmousedown="downimg('bbase15')" onmouseup="upimg('bbase15', 1)" onmouseout="upimg('bbase15', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase16" value="+" class="button cancel" onmousedown="downimg('bbase16')" onmouseup="upimg('bbase16', 1)" onmouseout="upimg('bbase16', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase17" value="+" class="button cancel" onmousedown="downimg('bbase17')" onmouseup="upimg('bbase17', 1)" onmouseout="upimg('bbase17', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase18" value="+" class="button cancel" onmousedown="downimg('bbase18')" onmouseup="upimg('bbase18', 1)" onmouseout="upimg('bbase18', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="bbase19" value="+" class="button cancel" onmousedown="downimg('bbase19')" onmouseup="upimg('bbase19', 1)" onmouseout="upimg('bbase19', 0)"><img src="./button/p.png"></button></td>
+					</tr>
+				  </tbody>
+				</table>
+				<div class="footer">
+				  <div style="float:left">
+					<br/>
+					<button type="button" class="toAlice"><img src="./button/return.png"/></button>
+				  </div>
+				  <div style="float:right">
+					<br/>
+					<button type="button" onclick="setValBob();document.frm.submit();"><img src="./button/run.png"/></button><br/>
+					<button type="button" onclick="setValBob()" class="toEve"><img src="./button/toEve.png"/></button>
+				  </div>
+				</div>
+			  </form>
+			</div>
+		  </div>
+		</li>
+		<li>
+		  <div class="block">
+			<div class="wrap">
+			  <div class="header">
+				<h1>Eve - eavesdropper</h1>
+			  </div>
+			  <form>
+				<table border="4" rules="groups">
+				  <thead>
+					<tr>
+					  <td colspan="10" align="center">
+						<button type="button" onclick="setRandomEve()"><img src="./button/random.png"/></button>
+					  </td>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr align="center">
+					  <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
+					</tr><tr>
+					  <td><button type="button" id="ebase0" value="+" class="button cancel" onmousedown="downimg('ebase0')" onmouseup="upimg('ebase0', 1)" onmouseout="upimg('ebase0', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase1" value="+" class="button cancel" onmousedown="downimg('ebase1')" onmouseup="upimg('ebase1', 1)" onmouseout="upimg('ebase1', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase2" value="+" class="button cancel" onmousedown="downimg('ebase2')" onmouseup="upimg('ebase2', 1)" onmouseout="upimg('ebase2', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase3" value="+" class="button cancel" onmousedown="downimg('ebase3')" onmouseup="upimg('ebase3', 1)" onmouseout="upimg('ebase3', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase4" value="+" class="button cancel" onmousedown="downimg('ebase4')" onmouseup="upimg('ebase4', 1)" onmouseout="upimg('ebase4', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase5" value="+" class="button cancel" onmousedown="downimg('ebase5')" onmouseup="upimg('ebase5', 1)" onmouseout="upimg('ebase5', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase6" value="+" class="button cancel" onmousedown="downimg('ebase6')" onmouseup="upimg('ebase6', 1)" onmouseout="upimg('ebase6', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase7" value="+" class="button cancel" onmousedown="downimg('ebase7')" onmouseup="upimg('ebase7', 1)" onmouseout="upimg('ebase7', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase8" value="+" class="button cancel" onmousedown="downimg('ebase8')" onmouseup="upimg('ebase8', 1)" onmouseout="upimg('ebase8', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase9" value="+" class="button cancel" onmousedown="downimg('ebase9')" onmouseup="upimg('ebase9', 1)" onmouseout="upimg('ebase9', 0)"><img src="./button/p.png"></button></td>
+					</tr>
+				  </tbody>
+				  <tbody>
+					<tr align="center">
+					  <td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+					</tr><tr>
+					  <td><button type="button" id="ebase10" value="+" class="button cancel" onmousedown="downimg('ebase10')" onmouseup="upimg('ebase10', 1)" onmouseout="upimg('ebase10', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase11" value="+" class="button cancel" onmousedown="downimg('ebase11')" onmouseup="upimg('ebase11', 1)" onmouseout="upimg('ebase11', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase12" value="+" class="button cancel" onmousedown="downimg('ebase12')" onmouseup="upimg('ebase12', 1)" onmouseout="upimg('ebase12', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase13" value="+" class="button cancel" onmousedown="downimg('ebase13')" onmouseup="upimg('ebase13', 1)" onmouseout="upimg('ebase13', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase14" value="+" class="button cancel" onmousedown="downimg('ebase14')" onmouseup="upimg('ebase14', 1)" onmouseout="upimg('ebase14', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase15" value="+" class="button cancel" onmousedown="downimg('ebase15')" onmouseup="upimg('ebase15', 1)" onmouseout="upimg('ebase15', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase16" value="+" class="button cancel" onmousedown="downimg('ebase16')" onmouseup="upimg('ebase16', 1)" onmouseout="upimg('ebase16', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase17" value="+" class="button cancel" onmousedown="downimg('ebase17')" onmouseup="upimg('ebase17', 1)" onmouseout="upimg('ebase17', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase18" value="+" class="button cancel" onmousedown="downimg('ebase18')" onmouseup="upimg('ebase18', 1)" onmouseout="upimg('ebase18', 0)"><img src="./button/p.png"></button></td>
+					  <td><button type="button" id="ebase19" value="+" class="button cancel" onmousedown="downimg('ebase19')" onmouseup="upimg('ebase19', 1)" onmouseout="upimg('ebase19', 0)"><img src="./button/p.png"></button></td>
+					</tr>
+				  </tbody>
+				</table>
+				<div class="footer">
+				  <div style="float:left">
+					<br/>
+					<button type="button" class="toBob"><img src="./button/return.png"/></button>
+				  </div>
+				  <div style="float:right">
+					<br/>
+					<button type="button" onclick="setValEve();document.frm.submit()"><img src="./button/run.png"/></button>
+				  </div>
+				</div>
+			  </form>
+			</div>
+		  </div>
+		</li>
+		<li><div class="block">
+			<form method="POST" action="./output.cgi" name="frm">
+			  <input type="text" name="alice" id="alice" value="">
+			  <input type="text" name="bob" id="bob" value="">
+			  <input type="text" name="eve" id="eve" value="22222222222222222222">
+			</form>
+		</div></li>
+      </ul>
 	</div>
-      </li>
-      <li>
-	<div class="block">
-	  <div class="wrap">
-	    <div class="header">
-	      <h1>Bob - receiver</h1>
-	    </div>
-	    <form>
-	      <table border="4" rules="groups">
-		<thead>
-		  <tr>
-		    <td colspan="10" align="center">
-		      <button type="button" onclick="setRandomBob()"><img src="./button/random.png"/></button>
-		    </td>
-		  </tr>
-		</thead>
-		<tbody>
-		  <tr align="center">
-		    <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
-		  </tr><tr>
-		    <td><button type="button" id="bbase0" value="+" class="button cancel" onmousedown="downimg('bbase0')" onmouseup="upimg('bbase0', 1)" onmouseout="upimg('bbase0', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase1" value="+" class="button cancel" onmousedown="downimg('bbase1')" onmouseup="upimg('bbase1', 1)" onmouseout="upimg('bbase1', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase2" value="+" class="button cancel" onmousedown="downimg('bbase2')" onmouseup="upimg('bbase2', 1)" onmouseout="upimg('bbase2', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase3" value="+" class="button cancel" onmousedown="downimg('bbase3')" onmouseup="upimg('bbase3', 1)" onmouseout="upimg('bbase3', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase4" value="+" class="button cancel" onmousedown="downimg('bbase4')" onmouseup="upimg('bbase4', 1)" onmouseout="upimg('bbase4', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase5" value="+" class="button cancel" onmousedown="downimg('bbase5')" onmouseup="upimg('bbase5', 1)" onmouseout="upimg('bbase5', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase6" value="+" class="button cancel" onmousedown="downimg('bbase6')" onmouseup="upimg('bbase6', 1)" onmouseout="upimg('bbase6', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase7" value="+" class="button cancel" onmousedown="downimg('bbase7')" onmouseup="upimg('bbase7', 1)" onmouseout="upimg('bbase7', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase8" value="+" class="button cancel" onmousedown="downimg('bbase8')" onmouseup="upimg('bbase8', 1)" onmouseout="upimg('bbase8', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase9" value="+" class="button cancel" onmousedown="downimg('bbase9')" onmouseup="upimg('bbase9', 1)" onmouseout="upimg('bbase9', 0)"><img src="./button/p.png"></button></td>
-		  </tr>
-		</tbody>
-		<tbody>
-		  <tr align="center">
-		    <td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
-		  </tr><tr>
-		    <td><button type="button" id="bbase10" value="+" class="button cancel" onmousedown="downimg('bbase10')" onmouseup="upimg('bbase10', 1)" onmouseout="upimg('bbase10', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase11" value="+" class="button cancel" onmousedown="downimg('bbase11')" onmouseup="upimg('bbase11', 1)" onmouseout="upimg('bbase11', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase12" value="+" class="button cancel" onmousedown="downimg('bbase12')" onmouseup="upimg('bbase12', 1)" onmouseout="upimg('bbase12', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase13" value="+" class="button cancel" onmousedown="downimg('bbase13')" onmouseup="upimg('bbase13', 1)" onmouseout="upimg('bbase13', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase14" value="+" class="button cancel" onmousedown="downimg('bbase14')" onmouseup="upimg('bbase14', 1)" onmouseout="upimg('bbase14', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase15" value="+" class="button cancel" onmousedown="downimg('bbase15')" onmouseup="upimg('bbase15', 1)" onmouseout="upimg('bbase15', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase16" value="+" class="button cancel" onmousedown="downimg('bbase16')" onmouseup="upimg('bbase16', 1)" onmouseout="upimg('bbase16', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase17" value="+" class="button cancel" onmousedown="downimg('bbase17')" onmouseup="upimg('bbase17', 1)" onmouseout="upimg('bbase17', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase18" value="+" class="button cancel" onmousedown="downimg('bbase18')" onmouseup="upimg('bbase18', 1)" onmouseout="upimg('bbase18', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="bbase19" value="+" class="button cancel" onmousedown="downimg('bbase19')" onmouseup="upimg('bbase19', 1)" onmouseout="upimg('bbase19', 0)"><img src="./button/p.png"></button></td>
-		  </tr>
-		</tbody>
-	      </table>
-	      <div class="footer">
-		<br/>
-		<button type="button" onclick="setValBob();document.frm.submit();"><img src="./button/run.png"/></button><br/>
-		<button type="button" onclick="setValBob()" id="toEve"><img src="./button/toEve.png"/></button>
-	      </div>
-	    </form>
-	  </div>
-	</div>
-      </li>
-      <li>
-	<div class="block">
-	  <div class="wrap">
-	    <div class="header">
-	      <h1>Eve - eavesdropper</h1>
-	    </div>
-	    <form>
-	      <table border="4" rules="groups">
-		<thead>
-		  <tr>
-		    <td colspan="10" align="center">
-		      <button type="button" onclick="setRandomEve()"><img src="./button/random.png"/></button>
-		    </td>
-		  </tr>
-		</thead>
-		<tbody>
-		  <tr align="center">
-		    <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
-		  </tr><tr>
-		    <td><button type="button" id="ebase0" value="+" class="button cancel" onmousedown="downimg('ebase0')" onmouseup="upimg('ebase0', 1)" onmouseout="upimg('ebase0', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase1" value="+" class="button cancel" onmousedown="downimg('ebase1')" onmouseup="upimg('ebase1', 1)" onmouseout="upimg('ebase1', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase2" value="+" class="button cancel" onmousedown="downimg('ebase2')" onmouseup="upimg('ebase2', 1)" onmouseout="upimg('ebase2', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase3" value="+" class="button cancel" onmousedown="downimg('ebase3')" onmouseup="upimg('ebase3', 1)" onmouseout="upimg('ebase3', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase4" value="+" class="button cancel" onmousedown="downimg('ebase4')" onmouseup="upimg('ebase4', 1)" onmouseout="upimg('ebase4', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase5" value="+" class="button cancel" onmousedown="downimg('ebase5')" onmouseup="upimg('ebase5', 1)" onmouseout="upimg('ebase5', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase6" value="+" class="button cancel" onmousedown="downimg('ebase6')" onmouseup="upimg('ebase6', 1)" onmouseout="upimg('ebase6', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase7" value="+" class="button cancel" onmousedown="downimg('ebase7')" onmouseup="upimg('ebase7', 1)" onmouseout="upimg('ebase7', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase8" value="+" class="button cancel" onmousedown="downimg('ebase8')" onmouseup="upimg('ebase8', 1)" onmouseout="upimg('ebase8', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase9" value="+" class="button cancel" onmousedown="downimg('ebase9')" onmouseup="upimg('ebase9', 1)" onmouseout="upimg('ebase9', 0)"><img src="./button/p.png"></button></td>
-		  </tr>
-		</tbody>
-		<tbody>
-		  <tr align="center">
-		    <td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
-		  </tr><tr>
-		    <td><button type="button" id="ebase10" value="+" class="button cancel" onmousedown="downimg('ebase10')" onmouseup="upimg('ebase10', 1)" onmouseout="upimg('ebase10', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase11" value="+" class="button cancel" onmousedown="downimg('ebase11')" onmouseup="upimg('ebase11', 1)" onmouseout="upimg('ebase11', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase12" value="+" class="button cancel" onmousedown="downimg('ebase12')" onmouseup="upimg('ebase12', 1)" onmouseout="upimg('ebase12', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase13" value="+" class="button cancel" onmousedown="downimg('ebase13')" onmouseup="upimg('ebase13', 1)" onmouseout="upimg('ebase13', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase14" value="+" class="button cancel" onmousedown="downimg('ebase14')" onmouseup="upimg('ebase14', 1)" onmouseout="upimg('ebase14', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase15" value="+" class="button cancel" onmousedown="downimg('ebase15')" onmouseup="upimg('ebase15', 1)" onmouseout="upimg('ebase15', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase16" value="+" class="button cancel" onmousedown="downimg('ebase16')" onmouseup="upimg('ebase16', 1)" onmouseout="upimg('ebase16', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase17" value="+" class="button cancel" onmousedown="downimg('ebase17')" onmouseup="upimg('ebase17', 1)" onmouseout="upimg('ebase17', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase18" value="+" class="button cancel" onmousedown="downimg('ebase18')" onmouseup="upimg('ebase18', 1)" onmouseout="upimg('ebase18', 0)"><img src="./button/p.png"></button></td>
-		    <td><button type="button" id="ebase19" value="+" class="button cancel" onmousedown="downimg('ebase19')" onmouseup="upimg('ebase19', 1)" onmouseout="upimg('ebase19', 0)"><img src="./button/p.png"></button></td>
-		  </tr>
-		</tbody>
-	      </table>
-	      <div class="footer">
-		<br/>
-		<button type="button" onclick="setValEve();document.frm.submit()"><img src="./button/run.png"/></button>
-	      </div>
-	    </form>
-	  </div>
-	</div>
-      </li>
-    </ul>
   </div>
 </body>

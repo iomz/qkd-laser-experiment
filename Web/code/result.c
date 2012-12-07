@@ -3,33 +3,66 @@
 #include <string.h>
 #include <stdbool.h>
 #include <errno.h>
+#include <time.h>
 
 void fprintBasis(FILE*, int);
 
 int main(){
+  printf("content-type: text/html\n\n");
+
+  srand((unsigned)time(NULL));
+
   FILE* result;
   FILE* index;
   int i, j;
   int len;
   char* str;
 
+  FILE* fp;
+  int c;
+  char outputText[4][64];
+  bool isEve = true, isEavesdrop = false;
+  if((fp=fopen("./output.txt", "r")) == NULL){
+    printf("Error:8");
+    return -1;
+  }
+  for(i=0;i<4;i++)
+	if(fgets(outputText[i], 64, fp) == NULL || outputText[i][0] == '2'){
+	  isEve = false;
+	  break;
+	}
+  fclose(fp);
+  
   if((result=fopen("result.html", "w")) == NULL){
 	printf("content-type: text/html\n\n");
-    printf("Error");
+    printf("Error:4");
     return -1;
   }
   
   str = (char*)malloc(sizeof(char) * 28);
 
-  len = atoi(getenv("CONTENT_LENGTH"));
+  /*len = atoi(getenv("CONTENT_LENGTH"));
   if(len != 27){
-    fprintf(result, "Error");
+    fprintf(result, "Error:5");
 	fclose(result);
     return -1;
   }
 
-  scanf("%s", str);
+  scanf("%s", str);*/
   str += 7;
+
+  /*************lie***************/
+  for(i=0;i<20;i++){
+	if(outputText[1][i*2]==outputText[2][i*2] && (outputText[1][i*2]==outputText[3][i*2] || !isEve)){
+	  str[i] = outputText[0][i*2];
+	}else{
+	  char temp[2];
+	  int tmp = rand() % 2;
+	  sprintf(temp, "%d", tmp);
+	  str[i] = temp[0];
+	}
+  }
+  /*******************************/
   
   fprintf(result, "<!DOCTYPE html>\n");
   fprintf(result, "<head>\n");
@@ -48,11 +81,11 @@ int main(){
 
   if((result=fopen("./tmp", "w")) == NULL){
 	printf("content-type: text/html\n\n");
-    printf("Error");
+    printf("Error:6");
     return -1;
   }
   if((index=fopen("./index.html", "r")) == NULL){
-    fprintf(result, "Error");
+    fprintf(result, "Error:7");
 	fclose(result);
     return -1;
   }
@@ -63,22 +96,6 @@ int main(){
   }
   
   /****************body******************/
-  FILE* fp;
-  int c;
-  char outputText[4][64];
-  bool isEve = true, isEavesdrop = false;
-  if((fp=fopen("./output.txt", "r")) == NULL){
-    fprintf(result, "Error");
-	fclose(result);
-	fclose(index);
-    return -1;
-  }
-  for(i=0;i<4;i++)
-	if(fgets(outputText[i], 64, fp) == NULL || outputText[i][0] == '2'){
-	  isEve = false;
-	  break;
-	}
-  fclose(fp);
   fprintf(result, "\t<table class=\"result\" border=\"1\" width=\"528px\" border=\"1\">\n\t\t<tr><td class=\"resultHead\" colspan=\"2\"></td>\n");
   for(i=0;i<20;i++) fprintf(result, "\t\t\t<td class=\"resultHead\" width=\"15px\"><font size=\"1\">%d</font></td>\n", i);
   fprintf(result, "\t\t</tr>\n");
@@ -134,7 +151,6 @@ int main(){
   fclose(result);
   free(str-7);
 
-  printf("content-type: text/html\n\n");
   errno = 0;
   if(rename("./tmp", "./index.html")!=0){
 	printf("error: %d<br/>\n", errno);

@@ -6,7 +6,7 @@ int main(){
   FILE* result;
   if((result=fopen("result.html", "w")) == NULL){
 	printf("content-type: text/html\n\n");
-    printf("Error");
+    printf("Error:0");
     return -1;
   }
   fprintf(result, "<!DOCTYPE html>\n");
@@ -36,14 +36,14 @@ int main(){
   if(len == 96) isEve = true;
   else{
     printf("content-type: text/html\n\n");
-    printf("Error", str);
+    printf("Error:1", str);
     return -1;
   }
 
   FILE* fp;
   if((fp=fopen("./output.txt", "w")) == NULL){
     printf("content-type: text/html\n\n");
-    printf("Error");
+    printf("Error:2");
     return -1;
   }
 
@@ -60,7 +60,7 @@ int main(){
 		continue;
       }else if(str[i] != '0' && str[i] != '1' && str[i] != '2'){
 		printf("content-type: text/html\n\n");
-		printf("Errorだよ");
+		printf("Error:3");
 		return -1;
       }
       fprintf(fp, "%c ", str[i]);
