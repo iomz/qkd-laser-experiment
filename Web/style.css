@@ -1,34 +1,51 @@
 @font-face{
 	font-family: 'Colors Of Autumn';
-	src: url('../../Colors Of Autumn.ttf');
+	src: url('./Colors Of Autumn.ttf');
 	src: local('Colors Of Autumn  Regular'), local('Colors Of Autumn'),
-	       url('../../fonts/Colors Of Autumn.ttf') format('opentype');
+	       url('./fonts/Colors Of Autumn.ttf') format('opentype');
 }
 
 body{
     text-align:center;
     background-color:#000000;
+	color:#FFFFFF;
 	font-family:'Colors Of Autumn';
 }
 .wrap{
     background-color:#000000;
     color:#FFFFFF;
     position:relative;
-    margin-left: 180px;
+    margin-left: 170px;
     width:528px;
-    height:500px;
+    height:400px;
+}
+#page{
+	width:964px;
+	height:588px;
+	border: 0px;
+}
+#leftFrame {
+	width:25px;
+	height:588px;
+	float:left;
+	vertical-align:middle;
+}
+#leftFrame span{
+	display:table-cell;
+	height:588px;
+	vertical-align:middle;
 }
 #flickable {
     background-color:#000000;
     border: 0px;
-    width: 963px;
-    height: 588px;
+    width: 939px;
+    height: 605px;
     overflow: hidden;
     float: left;
 }
 #flickable ul {
     list-style: none;
-    width:3000px;
+    width:4000px;
     margin: 0;
     padding: 5px;
 }
@@ -38,8 +55,8 @@ body{
     float: left;
 }
 #flickable .block {
-    width: 900px;
-    height: 528px;
+    width: 928px;
+    height: 520px;
     padding: 10px;
     float:left;
 }
@@ -90,6 +107,16 @@ input{
     background-color:#33AAFF;
     color:#000000;
     font-size:200%;
+}
+
+.replayTable{
+    border-top:1px solid #FFFFFF;
+    border-left:1px solid #FFFFFF;
+    border-bottom:1px solid #FFFFFF;
+    border-right:1px solid #FFFFFF;
+    text-align:center;
+    width:100px;
+    font-family:Colors Of Autumn;
 }
 
 table.result {
