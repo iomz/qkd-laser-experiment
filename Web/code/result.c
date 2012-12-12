@@ -65,6 +65,9 @@ int main(){
   
   
   /****************body******************/
+  fprintf(result, "\t<div class=\"header\">\n");
+  fprintf(result, "\t\t<h1>Result</h1>\n");
+  fprintf(result, "\t</div>");
   fprintf(result, "\t<table class=\"result\" border=\"1\" width=\"528px\" border=\"1\">\n\t\t<tr><td class=\"resultHead\" colspan=\"2\"></td>\n");
   for(i=0;i<20;i++) fprintf(result, "\t\t\t<td class=\"resultHead\" width=\"15px\"><font size=\"1\">%d</font></td>\n", i);
   fprintf(result, "\t\t</tr>\n");
