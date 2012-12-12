@@ -13,7 +13,6 @@ int main(){
   srand((unsigned)time(NULL));
 
   FILE* result;
-  FILE* index;
   int i, j;
   int len;
   char* str;
@@ -33,7 +32,7 @@ int main(){
 	}
   fclose(fp);
   
-  if((result=fopen("result.html", "w")) == NULL){
+  if((result=fopen("resultTmp", "w")) == NULL){
 	printf("content-type: text/html\n\n");
     printf("Error:4");
     return -1;
@@ -64,36 +63,6 @@ int main(){
   }
   /*******************************/
   
-  fprintf(result, "<!DOCTYPE html>\n");
-  fprintf(result, "<head>\n");
-  fprintf(result, "\t<title>Loading...</title>\n");
-  fprintf(result, "\t<meta http-equiv=\"Content-Type\" content=\"text/html;\" />\n");
-  fprintf(result, "<meta http-equiv=\"Refresh\" content=\"0;URL=./index.html\" />\n");
-  fprintf(result, "<link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"load/load.css\" />\n");
-  fprintf(result, "</head>\n");
-  fprintf(result, "<body>\n");
-  fprintf(result, "<div id=\"wrap\">\n");
-  fprintf(result, "<img border=\"0\" src=\"load/load.gif\" />\n");
-  fprintf(result, "</div>\n");
-  fprintf(result, "</body>\n");
-
-  fclose(result);
-
-  if((result=fopen("./tmp", "w")) == NULL){
-	printf("content-type: text/html\n\n");
-    printf("Error:6");
-    return -1;
-  }
-  if((index=fopen("./index.html", "r")) == NULL){
-    fprintf(result, "Error:7");
-	fclose(result);
-    return -1;
-  }
-  char copyBuf[128];
-  while(fgets(copyBuf, 128, index) != NULL){
-	fprintf(result, "%s", copyBuf);
-	if(strcmp(copyBuf, "<!--result-->\n") == 0) break;
-  }
   
   /****************body******************/
   fprintf(result, "\t<table class=\"result\" border=\"1\" width=\"528px\" border=\"1\">\n\t\t<tr><td class=\"resultHead\" colspan=\"2\"></td>\n");
@@ -134,27 +103,17 @@ int main(){
   fprintf(result, "\n\t\t</tr>\n\t</table>\n");
 
   if(isEve){
-	if(isEavesdrop) fprintf(result, "\n<h3 style=\"color:#6495ed\">Detection Successful</h3>\n");
-	else            fprintf(result, "\n<h3 style=\"color:#dc143c\">Detection Failed</h3>\n");
+	if(isEavesdrop) fprintf(result, "\n\t<h3 style=\"color:#6495ed\">Detection Successful</h3>\n");
+	else            fprintf(result, "\n\t<h3 style=\"color:#dc143c\">Detection Failed</h3>\n");
   }else{
-	if(isEavesdrop) fprintf(result, "\n<h3 style=\"color:#dc143c\">Distribution Failed</h3>\n");
-	else            fprintf(result, "\n<h3 style=\"color:#6495ed\">Distribution Successful</h3>\n");
+	if(isEavesdrop) fprintf(result, "\n\t<h3 style=\"color:#dc143c\">Distribution Failed</h3>\n");
+	else            fprintf(result, "\n\t<h3 style=\"color:#6495ed\">Distribution Successful</h3>\n");
   }
   /**************************************/
-  while(strcmp(fgets(copyBuf, 128, index), "<!--/result-->\n") != 0);
-  fprintf(result, "<!--/result-->\n");
-  while(fgets(copyBuf, 128, index) != NULL){
-	fprintf(result, "%s", copyBuf);
-  }
 
-  fclose(index);
   fclose(result);
-  free(str-7);
 
-  errno = 0;
-  if(rename("./tmp", "./index.html")!=0){
-	printf("error: %d<br/>\n", errno);
-  }
+  free(str-7);
 
   printf("OK!");
 

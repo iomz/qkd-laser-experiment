@@ -1,4 +1,4 @@
-$(function() {
+function flick() {
 	var element = $('#flickable').flickable({
 			section: 'li',
      		drag: function(event) {return false;}
@@ -33,4 +33,6 @@ $(function() {
 			 element.flickable('select', 1);
 			 return false;
 		 });
-});
+}
+
+$(flick);

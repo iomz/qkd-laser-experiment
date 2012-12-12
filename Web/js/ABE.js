@@ -25,6 +25,12 @@ function setRandomEve(){
 	}
 }
 
+function setRandomAll(){
+	setRandomAlice();
+	setRandomBob();
+	setRandomEve();
+}
+
 function setValAlice(){
 	var val = document.getElementById("alice");
 	val.value = "";

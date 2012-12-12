@@ -6,13 +6,13 @@
   <link rel="stylesheet" type="text/css" media="screen" href="./style.css"/>
   
   <script src="./js/jquery-1.4.2.min.js" type="text/javascript"></script>
-  <script src="./js/view_source.js" type="text/javascript"></script>
   <script src="./js/jquery.flickable.js" type="text/javascript"></script>
   <script src="./js/flick.js" type="text/javascript"></script>
   <script src="./js/ABE.js" type="text/javascript"></script>
   <script src="./js/change.js" type="text/javascript"></script>
+  <script src="./js/load.js" type="text/javascript"></script>
 </head>
-<body onload="setRandomAlice();setRandomBob();setRandomEve();">
+<body onload="setRandomAll();">
   <div id="page">
 	<div id="leftFrame">
 	  <span>
@@ -51,130 +51,106 @@
 			<td class="resultHead" width="15px"><font size="1">19</font></td>
 		</tr>
 		<tr>
-			<td class="resultHead" rowspan="3">Basis</td>
+			<td class="resultHead" rowspan="2">Basis</td>
 
 			<td class="resultHead2">Alice</td>
-			<td class="resultBody">×</td>
 			<td class="resultBody" style="background-color:#6495ed">×</td>
 			<td class="resultBody">×</td>
-			<td class="resultBody">+</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody">+</td>
-			<td class="resultBody" style="background-color:#6495ed">×</td>
-			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody">+</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#6495ed">×</td>
-			<td class="resultBody" style="background-color:#6495ed">×</td>
 			<td class="resultBody">+</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
 			<td class="resultBody" style="background-color:#6495ed">×</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody">×</td>
+			<td class="resultBody">+</td>
 			<td class="resultBody">+</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
+			<td class="resultBody" style="background-color:#6495ed">+</td>
 			<td class="resultBody">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody" style="background-color:#6495ed">+</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
 
 		</tr><tr>
 
 			<td class="resultHead2">Bob</td>
-			<td class="resultBody">+</td>
 			<td class="resultBody" style="background-color:#6495ed">×</td>
 			<td class="resultBody">+</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody">+</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody" style="background-color:#6495ed">×</td>
-			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody" style="background-color:#6495ed">×</td>
-			<td class="resultBody" style="background-color:#6495ed">×</td>
 			<td class="resultBody">×</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
 			<td class="resultBody" style="background-color:#6495ed">×</td>
-			<td class="resultBody" style="background-color:#dc143c">+</td>
-			<td class="resultBody">+</td>
+			<td class="resultBody">×</td>
 			<td class="resultBody">×</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody">×</td>
-
-		</tr><tr>
-
-			<td class="resultHead2">Eve</td>
-			<td class="resultBody">×</td>
 			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody">+</td>
-			<td class="resultBody">+</td>
-			<td class="resultBody">+</td>
-			<td class="resultBody" style="background-color:#6495ed">×</td>
-			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody">×</td>
-			<td class="resultBody" style="background-color:#dc143c">×</td>
-			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody" style="background-color:#6495ed">×</td>
-			<td class="resultBody">+</td>
-			<td class="resultBody" style="background-color:#6495ed">×</td>
-			<td class="resultBody" style="background-color:#6495ed">+</td>
-			<td class="resultBody" style="background-color:#dc143c">×</td>
-			<td class="resultBody">×</td>
 			<td class="resultBody">×</td>
 			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody">×</td>
 			<td class="resultBody">+</td>
+			<td class="resultBody" style="background-color:#6495ed">+</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody">+</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
+			<td class="resultBody">×</td>
+			<td class="resultBody" style="background-color:#6495ed">×</td>
 
 		</tr><tr>
 			<td class="resultHead" rowspan="2">Bit</td>
 
 			<td class="resultHead2">Alice</td>
-			<td class="resultBody">1</td>
-			<td class="resultBody" style="background-color:#6495ed">1</td>
-			<td class="resultBody">1</td>
-			<td class="resultBody">1</td>
-			<td class="resultBody">1</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
+			<td class="resultBody">0</td>
 			<td class="resultBody">0</td>
 			<td class="resultBody" style="background-color:#6495ed">0</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
+			<td class="resultBody">0</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
+			<td class="resultBody">0</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
+			<td class="resultBody">0</td>
+			<td class="resultBody">0</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
+			<td class="resultBody">0</td>
+			<td class="resultBody">0</td>
 			<td class="resultBody" style="background-color:#6495ed">0</td>
 			<td class="resultBody">1</td>
-			<td class="resultBody" style="background-color:#dc143c">0</td>
-			<td class="resultBody" style="background-color:#6495ed">0</td>
 			<td class="resultBody" style="background-color:#6495ed">1</td>
-			<td class="resultBody">1</td>
-			<td class="resultBody" style="background-color:#6495ed">1</td>
-			<td class="resultBody" style="background-color:#6495ed">1</td>
-			<td class="resultBody" style="background-color:#dc143c">0</td>
-			<td class="resultBody">1</td>
-			<td class="resultBody">1</td>
-			<td class="resultBody" style="background-color:#6495ed">1</td>
-			<td class="resultBody">1</td>
 
 		</tr><tr>
 
 			<td class="resultHead2">Bob</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
+			<td class="resultBody">0</td>
+			<td class="resultBody">0</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
+			<td class="resultBody" style="background-color:#6495ed">1</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody">1</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
 			<td class="resultBody">1</td>
 			<td class="resultBody" style="background-color:#6495ed">1</td>
-			<td class="resultBody">0</td>
 			<td class="resultBody">1</td>
 			<td class="resultBody">0</td>
 			<td class="resultBody">1</td>
 			<td class="resultBody" style="background-color:#6495ed">0</td>
-			<td class="resultBody" style="background-color:#6495ed">0</td>
 			<td class="resultBody">0</td>
-			<td class="resultBody" style="background-color:#dc143c">1</td>
-			<td class="resultBody" style="background-color:#6495ed">0</td>
-			<td class="resultBody" style="background-color:#6495ed">1</td>
-			<td class="resultBody">1</td>
-			<td class="resultBody" style="background-color:#6495ed">1</td>
-			<td class="resultBody" style="background-color:#6495ed">1</td>
-			<td class="resultBody" style="background-color:#dc143c">1</td>
 			<td class="resultBody">0</td>
+			<td class="resultBody" style="background-color:#6495ed">0</td>
 			<td class="resultBody">1</td>
 			<td class="resultBody" style="background-color:#6495ed">1</td>
-			<td class="resultBody">1</td>
 		</tr>
 	</table>
 
-<h3 style="color:#6495ed">Detection Successful</h3>
+<h3 style="color:#6495ed">Distribution Successful</h3>
 <!--/result-->
 			  <div class="footer">
 				<div style="float:left">
@@ -183,10 +159,10 @@
 						Without Input
 					</td></tr>
 					<tr><td>
-						<button type="button" onclick="setValAlice();setValBob();document.frm.submit();"><img src="./button/without.png"/></button>
+						<button type="button" onclick="setValAlice();setValBob();run();"><img src="./button/without.png"/></button>
 					</td></tr>
 					<tr><td>
-						<button type="button" onclick="setValAlice();setValBob();setValEve();document.frm.submit();"><img src="./button/with.png"/></button>
+						<button type="button" onclick="setValAlice();setValBob();setValEve();run();"><img src="./button/with.png"/></button>
 					</td></tr>
 				  </table>
 				</div>
@@ -331,7 +307,7 @@
 				  </div>
 				  <div style="float:right">
 					<br/>
-					<button type="button" onclick="setValBob();document.frm.submit();"><img src="./button/run.png"/></button><br/>
+					<button type="button" onclick="setValBob();run();"><img src="./button/run.png"/></button><br/>
 					<button type="button" onclick="setValBob()" class="toEve"><img src="./button/toEve.png"/></button>
 				  </div>
 				</div>
@@ -394,7 +370,7 @@
 				  </div>
 				  <div style="float:right">
 					<br/>
-					<button type="button" onclick="setValEve();document.frm.submit()"><img src="./button/run.png"/></button>
+					<button type="button" onclick="setValEve();run()"><img src="./button/run.png"/></button>
 				  </div>
 				</div>
 			  </form>
