@@ -6,16 +6,30 @@ function run() {
 	load_body += "</div>\n";
 	$('body').html(load_body);
 
-	$.post(
-		   "output.cgi",
-		   param,
-		   getData
-		   );
+	$.ajax({
+		type:    "POST",
+		url:     "output.cgi",
+		data:    param,
+		cache:   false,
+		success: sucFunc,
+		error:   errFunc,
+		timeout: 60000,
+	});
 
 
-	function getData(data){
+	function sucFunc(data, status, xhr){
 		$('body').html(data);
 		$(flick);
 		$(setRandomAll);
+	}
+
+	function errFunc(request, status, err){
+		if(status == "timeout"){
+			alert('timeout');
+		}else{
+			alert("error");
+		}
+
+		location.reload();
 	}
 }

@@ -117,6 +117,8 @@ int main(){
 
   printf("OK!");
 
+  system("./rmTmp resultTmp");
+
   return 0;
 }
 
