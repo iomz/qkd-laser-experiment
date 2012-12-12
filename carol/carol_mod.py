@@ -11,13 +11,41 @@ from urllib import urlopen
 import random
 import serial
 
-#FILE_PATH = "http://aqua-cat.sfc.wide.ad.jp/ORF2012/output.txt"
-#CGI_PATH = "http://aqua-cat.sfc.wide.ad.jp/ORF2012/result.cgi"
-FILE_PATH = "http://aqua-cat.sfc.wide.ad.jp/FIRST2012/output.txt"
-CGI_PATH = "http://aqua-cat.sfc.wide.ad.jp/FIRST2012/result.cgi"
+FILE_PATH = "http://aqua-cat.sfc.wide.ad.jp/ORF2012/output.txt"
+CGI_PATH = "http://aqua-cat.sfc.wide.ad.jp/ORF2012/result.cgi"
 KEY_SIZE = 20
 #NMEASURES = 10
 #NCALIBRATIONS = 10 # Must be an odd number
+
+# Todo:
+# Calibration process must include all the combination and store to the threshold
+# Abit  Abase   Bbase   Ebase
+# 0     0       0       0       A0   B0  E0   Block
+# 1     0       0       0       A90  B0  E0   Block
+# 0     1       0       0       A45  B0  E0   Block
+# 1     1       0       0       A135 B0  E0   Fuzzy
+# 0     0       1       0       A0   B45 E0   Block
+# 1     0       1       0       A90  B45 E0   Fuzzy
+# 0     1       1       0       A45  B45 E0   Block 
+# 1     1       1       0       A135 B45 E0   Fuzzy
+# 0     0       0       1       A0   B0  E45  Block
+# 1     0       0       1       A90  B0  E45  Fuzzy
+# 0     1       0       1       A45  B0  E45  Block
+# 1     1       0       1       A135 B0  E45  Fuzzy
+# 0     0       1       1       A0   B45 E45  Block
+# 1     0       1       1       A90  B45 E45  Fuzzy
+# 0     1       1       1       A45  B45 E45  Block
+# 1     1       1       1       A135 B45 E45  Open
+# 0     0       0       2       A0   B0  E180 Block
+# 1     0       0       2       A90  B0  E180 Open
+# 0     1       0       2       A45  B0  E180 Block
+# 1     1       0       2       A135 B0  E180 Open
+# 0     0       1       2       A0   B45 E180 Block
+# 1     0       1       2       A90  B45 E180 Fuzzy
+# 0     1       1       2       A45  B45 E180 Block
+# 1     1       1       2       A135 B45 E180 Open
+
+
 
 # RS232C init
 def rs232(device):
@@ -96,6 +124,8 @@ def auto_calibration(ser):
     thld = [0]*2
     bit_tmp = [0]*NCALIBRATIONS
 
+
+    # A1:0, B1, E2, Block State 
     # A0:1, B0, E2, Block State
     ser.write('m')
     ser.write('0')

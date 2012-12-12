@@ -3,8 +3,11 @@ qkd-laser-experiment
 
 AQUA's demonstration in ORF2012
 
-![http://aqua-cat.sfc.wide.ad.jp/~iomz/AQUAblueprint-0.png](http://aqua-cat.sfc.wide.ad.jp/~iomz/AQUAblueprint-0.png)
+![http://aqua-cat.sfc.wide.ad.jp/~iomz/qkd-overview.png](http://aqua-cat.sfc.wide.ad.jp/~iomz/qkd-overview.png)
 
+
+
+# The contentes below is outdated. Update is in progress...
 
 # ハードウェア
 
