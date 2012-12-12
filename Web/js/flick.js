@@ -1,6 +1,7 @@
-$(function() {
+function flick() {
 	var element = $('#flickable').flickable({
 			section: 'li',
+     		drag: function(event) {return false;}
 		});
 
 	$('#select_box td a').click(
@@ -10,20 +11,28 @@ $(function() {
 			return false;
 		});
 
-	$('#send').click(
+	$('.toResult').click(
 		 function(){
-			 element.flickable('select', 4);
+			 element.flickable('select', 0);
 			 return false;
 		 });
 
-	$('#toEve').click(
+	$('.toBob').click(
 		 function(){
-			 element.flickable('select', 5);
+			 element.flickable('select', 2);
 			 return false;
 		 });
-	$('#again').click(
+
+	$('.toEve').click(
 		 function(){
 			 element.flickable('select', 3);
 			 return false;
 		 });
-});
+	$('.toAlice').click(
+		 function(){
+			 element.flickable('select', 1);
+			 return false;
+		 });
+}
+
+$(flick);

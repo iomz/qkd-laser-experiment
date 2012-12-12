@@ -1,28 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <sys/stat.h>
 
 int main(){
-  FILE* result;
-  if((result=fopen("result.html", "w")) == NULL){
-	printf("content-type: text/html\n\n");
-    printf("Error");
-    return -1;
-  }
-  fprintf(result, "<!DOCTYPE html>\n");
-  fprintf(result, "<head>\n");
-  fprintf(result, "<title>Loading...</title>\n");
-  fprintf(result, "<meta http-equiv=\"Content-Type\" content=\"text/html;\" />\n");
-  fprintf(result, "<meta http-equiv=\"Refresh\" content=\"5;\" />\n");
-  fprintf(result, "<link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"load/load.css\" />\n");
-  fprintf(result, "</head>\n");
-  fprintf(result, "<body onload=\"setTimeout('location.reload()', 5000)\">\n");
-  fprintf(result, "<div id=\"wrap\">\n");
-  fprintf(result, "<img border=\"0\" src=\"load/load.gif\" />\n");
-  fprintf(result, "</div>\n");
-  fprintf(result, "</body>\n");
-  fclose(result);
-  
   int i;
   int len;
   bool isEve;
@@ -30,20 +11,20 @@ int main(){
 
   len = atoi(getenv("CONTENT_LENGTH"));
   scanf("%s", str);
-  
+
   /*if(len == 76) isEve = false;
 	else */
   if(len == 96) isEve = true;
   else{
-    printf("content-type: text/html\n\n");
-    printf("Error", str);
+    printf("content-type: text/plain\n\n");
+    printf("Error:1 %d %s", len, str);
     return -1;
   }
 
   FILE* fp;
   if((fp=fopen("./output.txt", "w")) == NULL){
-    printf("content-type: text/html\n\n");
-    printf("Error");
+    printf("content-type: text/plain\n\n");
+    printf("Error:2");
     return -1;
   }
 
@@ -59,8 +40,8 @@ int main(){
 		eq_flag ++;
 		continue;
       }else if(str[i] != '0' && str[i] != '1' && str[i] != '2'){
-		printf("content-type: text/html\n\n");
-		printf("Errorだよ");
+		printf("content-type: text/plain\n\n");
+		printf("Error:3");
 		return -1;
       }
       fprintf(fp, "%c ", str[i]);
@@ -69,24 +50,48 @@ int main(){
   }
   fclose(fp);
 
-  char buf[64];
-  fp = fopen("./output.txt", "r");
-  printf("content-type: text/html\n\n");
-  printf("<!DOCTYPE html>\n");
-  printf("<head>\n");
-  printf("<title>Loading...</title>\n");
-  printf("<meta http-equiv=\"Content-Type\" content=\"text/html;\" />\n");
-  printf("<meta http-equiv=\"Refresh\" content=\"0;URL=./result.html\" />\n");
-  printf("<link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"load/load.css\" />\n");
-  printf("</head>\n");
-  printf("<body onload=\"setTimeout('location.reload()', 5000)\">\n");
-  while(fgets(buf, sizeof(buf), fp) != NULL)
-    printf("%s<br/>", buf);
-  printf("<div id=\"wrap\">\n");
-  printf("<img border=\"0\" src=\"load/load.gif\" />\n");
-  printf("</div>\n");
-  printf("</body>\n");
-  fclose(fp);
+  /*****************************************************************/
+
+  struct stat stat_buf;
+  while(true){
+	if(stat("resultTmp", &stat_buf) == 0)
+	  if(stat_buf.st_size != 0) break;
+  }
+
+  printf("content-type: text/plain\n\n");
+
+  char copyBuf[128];
+  FILE* index;
+  FILE* result;
+  if((index=fopen("./index.html", "r")) == NULL){
+	printf("error");
+	return -1;
+  }
+  if((result=fopen("./resultTmp", "r")) == NULL){
+	printf("error");
+	fclose(index);
+	return -1;
+  }
+
+  while(strcmp(fgets(copyBuf, 128, index), "<body onload=\"setRandomAll();\">\n") != 0);
+  while(fgets(copyBuf, 128, index) != NULL){
+	if(strcmp(copyBuf, "<!--result-->\n") == 0) break;
+	printf("%s", copyBuf);
+  }
+
+  while(fgets(copyBuf, 128, result) != NULL)
+	printf("%s", copyBuf);
+
+  while(strcmp(fgets(copyBuf, 128, index), "<!--/result-->\n") != 0);
+  while(fgets(copyBuf, 128, index) != NULL){
+	if(strcmp(copyBuf, "</body>\n") == 0) break;
+	printf("%s", copyBuf);
+  }
+
+  fclose(index);
+  fclose(result);
+
+  remove("./resultTmp");
 
   return 0;
 }
