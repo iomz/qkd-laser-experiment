@@ -172,6 +172,7 @@ def start_qkd(ser, cur, thld):
     ser.write('s')
     print 'QKD demo started!'
     for i in range(0,KEY_SIZE):
+        ### Bit & Basis combination start ###
         ser.write(cur.alice_bit.getof(i))
         print cur.alice_bit.getof(i)
         sleep(0.2)
@@ -186,23 +187,26 @@ def start_qkd(ser, cur, thld):
         sleep(0.6)
         for i in range(0,5):
             print ser.readline()
-#
-#        bit_tmp = 0
-#        for j in range(0,NMEASURES):
-#            tmp = sub(r'\D','',ser.readline())
-#            if tmp =='':
-#               tmp = '0'
-#            bit_tmp += int(tmp)
-#        bit_tmp = bit_tmp/10.0
+        ### Bit & Basis combination end ###
+
+        ### Result pull start ###
+        bit_tmp = 0
+        for j in range(0,NMEASURES):
+            tmp = sub(r'\D','',ser.readline())
+            if tmp =='':
+               tmp = '0'
+            bit_tmp += int(tmp)
+        bit_tmp = bit_tmp/10.0
         
-#        if bit_tmp <= thld[0]:
-#            bob_bit += '0'
-#        elif thld[1] <= bit_tmp:
-#            bob_bit += '1'
-#        else:
-#            bob_bit += random.choice('01')
-    
-    bob_bit = "11111111000000011101"
+        if bit_tmp <= thld[0]:
+            bob_bit += '0'
+        elif thld[1] <= bit_tmp:
+            bob_bit += '1'
+        else:
+            bob_bit += random.choice('01')
+        ### Result pull end ###
+
+    #bob_bit = "11111111000000011101"
     cmd = "wget -q -O - --no-check-certificate --post-data 'result=" + bob_bit + "' " + CGI_PATH 
     call(split(cmd))
 
