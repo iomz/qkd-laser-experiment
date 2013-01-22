@@ -11,10 +11,10 @@ from urllib import urlopen
 import random
 import serial
 
-FILE_PATH = "http://lain.sfc.wide.ad.jp/qkd/output.txt"
-CGI_PATH = "http://lain.sfc.wide.ad.jp/qkd/result.cgi"
-#FILE_PATH = "http://aqua-cat.sfc.wide.ad.jp/FIRST2012/output.txt"
-#CGI_PATH = "http://aqua-cat.sfc.wide.ad.jp/FIRST2012/result.cgi"
+#FILE_PATH = "http://lain.sfc.wide.ad.jp/qkd/output.txt"
+#CGI_PATH = "http://lain.sfc.wide.ad.jp/qkd/result.cgi"
+FILE_PATH = "http://aqua-cat.sfc.wide.ad.jp/FIRST2012/output.txt"
+CGI_PATH = "http://aqua-cat.sfc.wide.ad.jp/FIRST2012/result.cgi"
 KEY_SIZE = 20
 #NMEASURES = 10
 #NCALIBRATIONS = 10 # Must be an odd number
