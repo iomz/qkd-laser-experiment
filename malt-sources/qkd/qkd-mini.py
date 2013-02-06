@@ -40,7 +40,7 @@ def auto_calibration(ser):
     print thld
     ser.write('\n\n')
 
-    for angle in range(60, 1800, 30):
+    for angle in range(0, 1800, 30):
         ser.write('r')
         string = ser.read(64)
         ser.write('%d\n\r'%angle)
@@ -48,7 +48,11 @@ def auto_calibration(ser):
         ser.write('m')
         result = ser.readline()
         val = int(sub('^.+: ', '', result))
-        print val
+        if angle < 180:
+            print '%d ignored'%val
+            continue
+        else:
+            print val
         if thld['H0'][0] < val:
             thld['H0'] = [val, angle]
         if thld['L0'][0] > val:
