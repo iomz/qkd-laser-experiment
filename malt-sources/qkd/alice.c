@@ -187,7 +187,7 @@ int main(int argc, char **argv) {
 			break;
 		  }
 		}
-		for(j=0;j<20;j++)
+		for(j=0;j<32;j++)
 		  fprintf(key_fp, "%d", key[j]);
 		fclose(key_fp);
 		printf("made %s.\n", file_name);
