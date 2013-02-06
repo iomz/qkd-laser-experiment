@@ -40,7 +40,7 @@ def auto_calibration(ser):
     print thld
     ser.write('\n\n')
 
-    for angle in range(0, 1800, 30):
+    for angle in range(60, 1800, 30):
         ser.write('r')
         string = ser.read(64)
         ser.write('%d\n\r'%angle)
